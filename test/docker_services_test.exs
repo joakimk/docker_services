@@ -4,6 +4,7 @@ defmodule DockerServicesTest do
 
   test "init generates a shell file" do
     File.rm("tmp/shell")
+
     DockerServices.CLI.main([ "init" ])
 
     { :ok, content } = File.read("tmp/shell")
