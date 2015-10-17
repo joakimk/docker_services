@@ -52,6 +52,7 @@ If it says "cd is a function", then copy that existing function and add `docker_
     $ docker_services start
     Installing service: redis:2.8... done
     Starting service: redis:2.8... done
+
     $ redis-cli -p $REDIS_PORT
     127.0.0.1:1234>
 
@@ -65,9 +66,12 @@ If it says "cd is a function", then copy that existing function and add `docker_
 Environment variables are automatically set and cleared using a "cd" hook:
 
     $ cd project_already_using_docker_services
+
     $ export | grep PORT
     REDIS_PORT=1234
+
     $ cd ..
+
     $ export | grep PORT
 
 # Development
