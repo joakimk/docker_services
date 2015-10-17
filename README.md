@@ -116,6 +116,14 @@ This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you'
 
 3) Update install instructions in [readme](https://github.com/joakimk/docker_services/edit/master/README.md).
 
+# TODO
+
+- [ ] Implement start with a fake docker client
+- [ ] Implement stop with a fake docker client
+- [ ] Implement the real docker client and make it all work
+- [ ] Use in internal projects
+- [ ] Release 1.0? :)
+
 ## License
 
 Copyright (c) 2015 [Joakim Kolsjö](https://twitter.com/joakimk)
