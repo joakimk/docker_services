@@ -38,7 +38,7 @@ If it says "cd is a shell builtin", then add this to your profile:
         fi
     }
 
-If it says "cd is a function", then copy that existing function, add `docker_services set_environment_variables` and use that instead.
+If it says "cd is a function", then copy that existing function and add `docker_services set_environment_variables`.
 
 ## Usage
 
@@ -56,11 +56,12 @@ If it says "cd is a function", then copy that existing function, add `docker_ser
 ### Stopping services
 
     $ docker_services stop
+      Stopping service: redis:2.8... done
     $ export | grep PORT
 
 ### How environment variables are handled
 
-Environment variables are automatically set and cleared using a "cd" hook, like rvm.
+Environment variables are automatically set and cleared using a "cd" hook:
 
     $ cd project_already_using_docker_services
     $ export | grep PORT
