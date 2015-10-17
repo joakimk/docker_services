@@ -91,6 +91,10 @@ todo
 
 # Release
 
+1) Build script:
+
     MIX_ENV=prod mix escript.build
-    # go to https://github.com/joakimk/docker_services/releases and make a release
-    # update the install instructions
+    
+2) Go to https://github.com/joakimk/docker_services/releases and make a release.
+
+3) Update install instructions in [readme](https://github.com/joakimk/docker_services/edit/master/README.md).
