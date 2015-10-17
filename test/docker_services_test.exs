@@ -34,16 +34,21 @@ defmodule DockerServicesTest do
 
     assert output =~ "Starting redis:2.8... done"
 
-    # TODO: add a project identifier, since the full path is not so nice, and can't be used in docker names
+    # TODO: implement:
 
     # the new environment we want after running this command:
-    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/#{System.cwd}/load.env")
+    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/projects/#{project_identifier}/load.env")
     #assert content == "export REDIS_PORT=5555"
 
-    ## unload.env restores the environment as it was before load.env changed it:
-    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/#{Dir.pwd}/unload.env")
+    ### unload.env restores the environment as it was before load.env changed it:
+    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/projects/#{project_identifier}/unload.env")
     #assert content == "export REDIS_PORT=9999"
+
+    # TODO: assertions around what we do with docker
   end
+
+
+  defp project_identifier, do: DockerServices.Project.identifier
 
   #  # docker = Application.get_env(:docker_services, :docker_client)
   #  #{:ok, external_port} = docker.start(name: name, image_name: image_name)
