@@ -19,9 +19,10 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
-    sudo curl -L https://github.com/joakimk/docker_services/releases/download/v0.1/docker_services \
-            > /usr/local/bin/docker_services && \
-            sudo chmod +x /usr/local/bin/docker_services && \
+    curl -L https://github.com/joakimk/docker_services/releases/download/v0.1/docker_services
+            > /tmp/docker_services && \
+            chmod +x /tmp/docker_services && \
+            sudo mv /tmp/docker_services /usr/local/bin \
             docker_services init
 
 ## Hooking into "cd"
