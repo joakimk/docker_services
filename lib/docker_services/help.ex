@@ -1,7 +1,7 @@
 defmodule DockerServices.Help do
   def show do
     IO.puts """
-    docker_services v#{DockerServices.Version.current}
+    docker_services v#{DockerServices.version}
 
     Starts services (like redis, memcached, postgres) using docker.
 
