@@ -89,6 +89,10 @@ Environment variables are automatically set and cleared using a "cd" hook:
 
 Data is stored ourside of docker in `~/.docker_services/project_identifier/service_name`. The path is mounted as a volume within the docker service when it's run.
 
+## Why call the config file "dev.yml"?
+
+It's the config format we've been using internally for various development config. Please post an issue if you have ideas around config. It might support several different ones later on. I would like to try and avoid "DockerServicesFile" though :)
+
 # Development
 
     mix deps.get

@@ -11,7 +11,6 @@ defmodule DockerServices.CLI do
 
     Usage:
       cd project
-      docker_services init
       docker_services start
       docker_services stop
 
