@@ -98,6 +98,8 @@ It's the config format we've been using internally for various development confi
 
 # Development
 
+This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you're on OSX, just "brew install elixir".
+
     mix deps.get
     mix test
 
