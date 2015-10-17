@@ -12,20 +12,22 @@ We've been using tools like this at [auctionet.com](http://dev.auctionet.com) wi
 
 I've tried to release this as part of a [bigger project](https://github.com/joakimk/devbox-tools) before, but have realised that it has value as a stand alone tool.
 
-## Installation
+## Installing the tool
 
 First install the tool and add the `docker_services` shell function to your profile.
 
     curl something | bash
     ls ~/.profile && echo 'source /usr/local/lib/docker\_services/shell' >> ~/.profile
 
-### Adding the "cd" shell hook
+## Hooking into "cd"
 
 This tool does not automatically override "cd", but will be much easier to use if you do.
 
-#### When there already is a hook:
+You can check using this command:
 
     $ type cd
+
+When there already is a function in place you will see something like this:
 
     cd is a function
     cd ()
@@ -39,14 +41,17 @@ This tool does not automatically override "cd", but will be much easier to use i
         fi
     }
 
-Copy that code into your shell profile, and below `__rvm_cd_functions_set`, add `docker_services set_environment_variables` and you will be able to have both rvm and docker\_services :).
+Copy that code into your shell profile, and below `__rvm_cd_functions_set`, add `docker_services set_environment_variables` and you will be able to have both rvm and docker\_services.
 
-#### If there is no hook:
+If there is no hook:
 
     $ type
     cd is a shell builtin
 
-Add a hook to your profile below the line that loads `docker_services`:
+Then you can add hook to your profile below the line that loads `docker_services`:
+
+
+    source /usr/local/lib/docker_services/shell
 
     cd ()
     {
