@@ -6,7 +6,11 @@ defmodule DockerServicesTest do
   test "'bootstrap' generates a shell file" do
     File.rm("tmp/shell")
 
-    DockerServices.CLI.main([ "bootstrap" ])
+    output = capture_io fn ->
+      DockerServices.CLI.main([ "bootstrap" ])
+    end
+
+    assert output =~ "Bootstrap complete"
 
     { :ok, content } = File.read("tmp/shell")
     assert content =~ "function docker_services()"

@@ -41,15 +41,18 @@ If it says "cd is a shell builtin", then add this to your profile:
       cd ()
       {
           if builtin cd "$@"; then
-              docker_services set_environment_variables
+              __docker_services_set_environment_variables
               return 0;
           else
               return $?;
           fi
       }
+
+      # Support the non-cd navigation in zsh
+      [ $SHELL = "/usr/bin/zsh" ] && chpwd_functions+=("__docker_services_set_environment_variables")
     fi
 
-If it says "cd is a function", then copy that existing function and add `docker_services set_environment_variables`.
+If it says "cd is a function", then copy that existing function and add `__docker_services_set_environment_variables`.
 
 ## Usage
 

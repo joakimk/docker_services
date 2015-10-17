@@ -31,6 +31,11 @@ defmodule DockerServices.Bootstrap do
 
       return $exit_status
     }
+
+    function __docker_services_set_environment_variables()
+    {
+      docker_services set_environment_variables
+    }
     """
   end
 

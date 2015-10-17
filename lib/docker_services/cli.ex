@@ -1,6 +1,7 @@
 defmodule DockerServices.CLI do
   def main([ "bootstrap" ]) do
     DockerServices.Bootstrap.run
+    IO.puts "Bootstrap complete, now go read: https://github.com/joakimk/docker_services#hooking-into-cd"
   end
 
   def main([ "help" ]) do
