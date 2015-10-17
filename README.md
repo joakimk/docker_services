@@ -112,7 +112,7 @@ This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you'
 
     MIX_ENV=prod mix escript.build
 
-2) Go to https://github.com/joakimk/docker_services/releases and make a release.
+2) Go to https://github.com/joakimk/docker\_services/releases and make a release.
 
 3) Update install instructions in [readme](https://github.com/joakimk/docker_services/edit/master/README.md).
 

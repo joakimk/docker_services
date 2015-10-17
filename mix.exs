@@ -18,7 +18,7 @@ defmodule DockerServices.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [:logger],
+      applications: [:logger, :yaml_elixir],
       env: [
         shell_file_path: "HOME_PATH/.docker_services/shell"
       ],
@@ -35,6 +35,9 @@ defmodule DockerServices.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      { :yaml_elixir, github: "KamilLelonek/yaml-elixir" },
+      { :yamerl, github: "yakaz/yamerl" },
+    ]
   end
 end

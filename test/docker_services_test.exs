@@ -16,29 +16,39 @@ defmodule DockerServicesTest do
     assert content =~ "function docker_services()"
   end
 
-  #test "'start' starts the services specified in config" do
-  #  # WIP
+  test "'start' starts the services specified in config" do
+    File.rm_rf("tmp/test_project")
+    File.mkdir_p("tmp/test_project")
+    File.write "tmp/test_project/dev.yml", """
+    docker_services:
+      redis:
+        image: redis:2.8
+    """
 
-  #  File.rm_rf("tmp/test_project")
-  #  File.mkdir_p("tmp/test_project")
-  #  File.cd("tmp/test_project")
-  #  File.write("dev.yml", """
-  #  docker_services:
-  #    redis:
-  #      image: redis:2.8
-  #  """)
+    System.put_env("REDIS_PORT", "9999")
+
+    output = capture_io fn ->
+      File.cd("tmp/test_project")
+      DockerServices.CLI.main([ "start" ])
+    end
+
+    assert output =~ "Starting redis:2.8... done"
+
+    # TODO: add a project identifier, since the full path is not so nice, and can't be used in docker names
+
+    # the new environment we want after running this command:
+    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/#{System.cwd}/load.env")
+    #assert content == "export REDIS_PORT=5555"
+
+    ## unload.env restores the environment as it was before load.env changed it:
+    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/#{Dir.pwd}/unload.env")
+    #assert content == "export REDIS_PORT=9999"
+  end
 
   #  # docker = Application.get_env(:docker_services, :docker_client)
   #  #{:ok, external_port} = docker.start(name: name, image_name: image_name)
   #  # write port to file, etc.
   #  #:ok = docker.stop(name)
-
-  #  output = capture_io fn ->
-  #    DockerServices.CLI.main([ "start" ])
-  #  end
-
-  #  { :ok, content } = File.read("~/.docker_services/something/env.load")
-  #  assert content == "export REDIS_PORT=5555"
   #:os.getenv [ 'a=b', '', ...
 
   # on start:
@@ -57,7 +67,6 @@ defmodule DockerServicesTest do
   # after commands run or on cd:
   # source ~/.docker_services/envs/$OLDPWD/unload.env
   # source ~/.docker_services/envs/$PWD/load.env
-  #end
 
   test "'help' shows help text" do
     output = capture_io fn ->
