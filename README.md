@@ -19,9 +19,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
-    $ curl -L https://github.com/joakimk/docker_services/releases/download/v0.1/docker_services > /usr/local/bin/docker_services && chmod +x /usr/local/bin/docker_services
-    $ docker_services init
-    Creating shell hook ~/.docker_services/shell. See the readme for setup.
+    curl -L https://github.com/joakimk/docker_services/releases/download/v0.1/docker_services > /usr/local/bin/docker_services && chmod +x /usr/local/bin/docker_services && docker_services init
 
 ## Hooking into "cd"
 
