@@ -1,7 +1,7 @@
 defmodule DockerServices.Runner do
   def start do
     config.docker_services
-    |> Enum.each fn ({name, %{ image: image }}) ->
+    |> Enum.each fn {name, %{ image: image }} ->
       start(name, image)
     end
   end
