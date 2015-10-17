@@ -42,14 +42,15 @@ If it says "cd is a function", then copy that existing function and add `docker_
 
 ## Usage
 
-### Setup and start services
+### Configure the project
 
     $ cd project
     $ printf "docker_services:\n  redis:\n    image: redis:2.8\n" > dev.yml
+
+### Start services
+
     $ docker_services start
       Starting service: redis:2.8... done
-    $ export | grep PORT
-    REDIS_PORT=1234
     $ redis-cli -p $REDIS_PORT
     127.0.0.1:1234>
 
@@ -57,7 +58,6 @@ If it says "cd is a function", then copy that existing function and add `docker_
 
     $ docker_services stop
       Stopping service: redis:2.8... done
-    $ export | grep PORT
 
 ### How environment variables are handled
 
