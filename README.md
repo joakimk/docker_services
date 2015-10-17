@@ -33,17 +33,19 @@ So first check what your `cd` does:
 
 If it says "cd is a shell builtin", then add this to your profile:
 
-    source ~/.docker_services/shell
+    if [ -s "$HOME/.docker_services/shell" ]; then
+      source ~/.docker_services/shell
 
-    cd ()
-    {
-        if builtin cd "$@"; then
-            docker_services set_environment_variables
-            return 0;
-        else
-            return $?;
-        fi
-    }
+      cd ()
+      {
+          if builtin cd "$@"; then
+              docker_services set_environment_variables
+              return 0;
+          else
+              return $?;
+          fi
+      }
+    fi
 
 If it says "cd is a function", then copy that existing function and add `docker_services set_environment_variables`.
 
