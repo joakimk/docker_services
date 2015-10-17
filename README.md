@@ -90,7 +90,7 @@ Environment variables are automatically set and cleared using a "cd" hook:
 
 ## Where is data stored?
 
-Data is stored ourside of docker in `~/.docker_services/project_identifier/service_name`. The path is mounted as a volume within the docker service when it's run.
+Data is stored outside of docker in `~/.docker_services/projects/project_identifier/service_name/volumes`. The path is mounted as a volume within the docker service when it's run.
 
 ## Why call the config file "dev.yml"?
 
