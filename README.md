@@ -59,7 +59,7 @@ Environment variables are automatically set and cleared using a "cd" hook, like 
         fi
     }
 
-Copy that code into your bash shell, and below `__rvm_cd_functions_set`, add `docker_services env` and you will be able to have both rvm and docker\_services :).
+Copy that code into your shell profile, and below `__rvm_cd_functions_set`, add `docker_services env` and you will be able to have both rvm and docker\_services :).
 
 # Development
 
