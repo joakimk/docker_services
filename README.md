@@ -21,7 +21,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 ### Setup and start services
 
     $ cd project
-    $ echo "docker_services:\n  redis:\n  docker_image: redis:2.8" > dev.yml
+    $ printf "docker_services:\n  redis:\n    image: redis:2.8\n" > dev.yml
     $ docker_services start
       Starting service: redis:2.8... done
     $ export | grep PORT
