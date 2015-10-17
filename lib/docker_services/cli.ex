@@ -1,16 +1,12 @@
 defmodule DockerServices.CLI do
-  def main([ "bootstrap" ]) do
-    DockerServices.Bootstrap.run
-    IO.puts "Bootstrap complete, now go read: https://github.com/joakimk/docker_services#hooking-into-cd"
-  end
+  def main([]), do: command("")
+  def main(args), do: command(args |> hd |> String.to_atom)
 
-  def main([ "help" ]) do
-    DockerServices.Help.show
-  end
+  def command(:bootstrap), do: DockerServices.Bootstrap.run
+  def command(:help), do: DockerServices.Help.show
 
-  def main(args) do
-    IO.puts "Unknown command or arguments: #{inspect(args)}\n"
-
-    main([ "help" ])
+  def command(other) do
+    IO.puts "Unknown command: #{other}\n"
+    command(:help)
   end
 end

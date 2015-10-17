@@ -2,6 +2,7 @@ defmodule DockerServices.Bootstrap do
   def run do
     create_home_directory
     write_shell_script
+    IO.puts "Bootstrap complete, now go read: https://github.com/joakimk/docker_services#hooking-into-cd"
   end
 
   defp create_home_directory do
