@@ -12,6 +12,11 @@ We've been using tools like this at [auctionet.com](http://dev.auctionet.com) wi
 
 I've tried to release this as part of a [bigger project](https://github.com/joakimk/devbox-tools) before, but have realised that it has value as a stand alone tool.
 
+## Prerequisites
+
+* Erlang 18 or newer, see <https://www.erlang-solutions.com/downloads/download-erlang-otp>
+* docker, see <http://docker.com/>
+
 ## Installation
 
     curl something | bash

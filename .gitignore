@@ -2,4 +2,5 @@
 /cover
 /deps
 erl_crash.dump
+docker_services
 *.ez
