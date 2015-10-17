@@ -4,6 +4,7 @@ defmodule DockerServices.CLI do
   end
 
   def main(args) do
-    IO.inspect "Unknown args: #{args}"
+    IO.puts "Unknown command or arguments: #{inspect(args)}"
+    System.halt(1)
   end
 end
