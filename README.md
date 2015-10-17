@@ -14,14 +14,10 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
-First install the tool
+First install the tool and add the `docker_services` shell function to your profile.
 
     curl something | bash
-
-Add the shell function `docker_services` to your shell profile.
-
-    # Example
-    echo 'source /usr/local/lib/docker\_services/shell' >> .profile
+    ls ~/.profile && echo 'source /usr/local/lib/docker\_services/shell' >> ~/.profile
 
 ### Adding the "cd" shell hook
 
