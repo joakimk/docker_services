@@ -3,4 +3,5 @@
 /deps
 erl_crash.dump
 docker_services
+tmp
 *.ez

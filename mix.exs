@@ -17,7 +17,12 @@ defmodule DockerServices.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [
+      applications: [:logger],
+      env: [
+        shell_file_path: "HOME_PATH/.docker_services/shell"
+      ],
+    ]
   end
 
   # Dependencies can be Hex packages:
