@@ -14,7 +14,53 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
+First install the tool
+
     curl something | bash
+
+Add the shell function `docker_services` to your shell profile.
+
+    # Example
+    echo 'source /usr/local/lib/docker\_services/shell' >> .profile
+
+### Adding the "cd" shell hook
+
+This tool does not automatically override "cd", but will be much easier to use if you do.
+
+#### When there already is a hook:
+
+    $ type cd
+
+    cd is a function
+    cd ()
+    {
+        if builtin cd "$@"; then
+            [[ -n "${rvm_current_rvmrc:-}" && "$*" == "." ]] && rvm_current_rvmrc="" || true;
+            __rvm_cd_functions_set;
+            return 0;
+        else
+            return $?;
+        fi
+    }
+
+Copy that code into your shell profile, and below `__rvm_cd_functions_set`, add `docker_services set_environment_variables` and you will be able to have both rvm and docker\_services :).
+
+#### If there is no hook:
+
+    $ type
+    cd is a shell builtin
+
+Add a hook to your profile below the line that loads `docker_services`:
+
+    cd ()
+    {
+        if builtin cd "$@"; then
+            docker_services set_environment_variables
+            return 0;
+        else
+            return $?;
+        fi
+    }
 
 ## Usage
 
@@ -43,23 +89,6 @@ Environment variables are automatically set and cleared using a "cd" hook, like 
     REDIS_PORT=1234
     $ cd ..
     $ export | grep PORT
-
-### What if something already has the "cd" shell function?
-
-    type cd
-    cd is a function
-    cd ()
-    {
-        if builtin cd "$@"; then
-            [[ -n "${rvm_current_rvmrc:-}" && "$*" == "." ]] && rvm_current_rvmrc="" || true;
-            __rvm_cd_functions_set;
-            return 0;
-        else
-            return $?;
-        fi
-    }
-
-Copy that code into your shell profile, and below `__rvm_cd_functions_set`, add `docker_services env` and you will be able to have both rvm and docker\_services :).
 
 # Development
 
