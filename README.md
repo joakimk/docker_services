@@ -19,7 +19,9 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
-    curl something | bash
+    $ curl -L https://github.com/joakimk/docker_services/releases/download/v0.1/docker_services > /usr/local/bin/docker_services && chmod +x /usr/local/bin/docker_services
+    $ docker_services init
+    Creating shell hook ~/.docker_services/shell. See the readme for setup.
 
 ## Hooking into "cd"
 
@@ -31,7 +33,7 @@ So first check what your `cd` does:
 
 If it says "cd is a shell builtin", then add this to your profile:
 
-    source /usr/local/lib/docker_services/shell
+    source ~/.docker_services/shell
 
     cd ()
     {
@@ -87,4 +89,8 @@ Data is stored ourside of docker in ~/.docker\_services/app\_name/service\_name.
 
 todo
 
-    mix escript.build
+# Release
+
+    MIX_ENV=prod mix escript.build
+    # go to https://github.com/joakimk/docker_services/releases and make a release
+    # update the install instructions
