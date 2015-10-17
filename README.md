@@ -86,3 +86,5 @@ Data is stored ourside of docker in ~/.docker\_services/app\_name/service\_name.
 # Development
 
 todo
+
+    mix escript.build
