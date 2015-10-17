@@ -1,4 +1,4 @@
-defmodule DockerServices.Init do
+defmodule DockerServices.Bootstrap do
   def run do
     create_home_directory
     write_shell_script
@@ -24,8 +24,8 @@ defmodule DockerServices.Init do
         exit_status=$?
       fi
 
-      # Reload this script after init has been run since it might have changed
-      if [ "$1" == "init" ]; then
+      # Reload this script after bootstrap has been run since it might have changed
+      if [ "$1" == "bootstrap" ]; then
         source "#{shell_file_path}"
       fi
 

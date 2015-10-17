@@ -23,7 +23,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
             > /tmp/docker_services && \
             chmod +x /tmp/docker_services && \
             sudo mv /tmp/docker_services /usr/local/bin && \
-            docker_services init
+            docker_services bootstrap
 
 ## Hooking into "cd"
 
