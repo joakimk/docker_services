@@ -4,11 +4,13 @@
 
 ## What is this?
 
-A tool to run multiple versions of services like redis or postgres within the same computer without having port collisions using docker.
+A tool to run multiple versions of services like redis or postgres on the same computer without having port collisions using docker.
 
 ## Motivation
 
-We've been using tools like this at <https://dev.auctionet.com> with great success for more than a year. It has enabled us to develop many small and big projects in a single vagrant VM. Even if vagrant is great for isolating projects, sometimes it's a bit heavyweight.
+We've been using tools like this at [auctionet.com](http://dev.auctionet.com) with great success for more than a year. It has enabled us to develop many small and big projects in a single vagrant VM. Even if vagrant is great for isolating projects, sometimes it's a bit heavyweight.
+
+I've tried to release this as part of a [bigger project](https://github.com/joakimk/devbox-tools) before, but have realised that it has value as a stand alone tool.
 
 ## Installation
 
