@@ -44,7 +44,7 @@ defmodule DockerServicesTest do
     #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/projects/#{project_identifier}/unload.env")
     #assert content == "export REDIS_PORT=9999"
 
-    # TODO: assertions around what we do with docker
+    #assert FakeDocker.last_command == %{ command: start, name: "redis", docker_image: "redis:2.8" }
   end
 
 
