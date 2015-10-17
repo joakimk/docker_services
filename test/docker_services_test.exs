@@ -48,8 +48,6 @@ defmodule DockerServicesTest do
   end
 
 
-  defp project_identifier, do: DockerServices.Project.identifier
-
   #  # docker = Application.get_env(:docker_services, :docker_client)
   #  #{:ok, external_port} = docker.start(name: name, image_name: image_name)
   #  # write port to file, etc.
@@ -90,4 +88,6 @@ defmodule DockerServicesTest do
     assert output =~ "unknown1"
     assert output =~ "Usage:"
   end
+
+  defp project_identifier, do: DockerServices.Project.identifier
 end
