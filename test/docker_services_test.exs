@@ -40,9 +40,22 @@ defmodule DockerServicesTest do
   #  { :ok, content } = File.read("~/.docker_services/something/env.load")
   #  assert content == "export REDIS_PORT=5555"
 
-  #  # test that we store env before and after we changed it
-  #  # source unload
-  #  # source load
+  # on start:
+  # unload.env:
+  # - for all env names we add:
+  #   - if they already exist, write an export statement for the current value
+  #   - if they don't exist, write an unset statement
+  # load.env:
+  # - for all env names we add:
+  #   - write export statements
+
+  # on stop:
+  # load.env:
+  # - copy unload.env
+
+  # after commands run or on cd:
+  # source ~/.docker_services/envs/$OLDPWD/unload.env
+  # source ~/.docker_services/envs/$PWD/load.env
   #end
 
   test "'help' shows help text" do
