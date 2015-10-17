@@ -83,7 +83,7 @@ Environment variables are automatically set and cleared using a "cd" hook:
 
 ## Where is data stored?
 
-Data is stored ourside of docker in ~/.docker\_services/app\_name/service\_name. The path is mounted as a volume within the docker service when it's run.
+Data is stored ourside of docker in `~/.docker_services/app_name/service_name`. The path is mounted as a volume within the docker service when it's run.
 
 # Development
 
