@@ -91,7 +91,7 @@ Data is stored ourside of docker in `~/.docker_services/project_identifier/servi
 
     mix deps.get
     mix test
-    
+
     # mix escript.build
     # scp docker_services test_server:/usr/local/bin
 
@@ -100,7 +100,7 @@ Data is stored ourside of docker in `~/.docker_services/project_identifier/servi
 1) Build script:
 
     MIX_ENV=prod mix escript.build
-    
+
 2) Go to https://github.com/joakimk/docker_services/releases and make a release.
 
 3) Update install instructions in [readme](https://github.com/joakimk/docker_services/edit/master/README.md).
