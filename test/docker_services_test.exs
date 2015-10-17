@@ -39,6 +39,7 @@ defmodule DockerServicesTest do
 
   #  { :ok, content } = File.read("~/.docker_services/something/env.load")
   #  assert content == "export REDIS_PORT=5555"
+  #:os.getenv [ 'a=b', '', ...
 
   # on start:
   # unload.env:

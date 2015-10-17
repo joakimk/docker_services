@@ -122,6 +122,7 @@ This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you'
 - [ ] Implement stop with a fake docker client
 - [ ] Implement the real docker client and make it all work
 - [ ] Use in internal projects
+- [ ] Add support for custom ENVs for some services like postgres.
 - [ ] Release 1.0? :)
 
 ## License
