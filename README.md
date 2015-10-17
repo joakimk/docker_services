@@ -15,7 +15,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 ## Prerequisites
 
 * Erlang 18 or newer, see <https://www.erlang-solutions.com/downloads/download-erlang-otp>
-* docker, see <http://docker.com/>
+* docker, see <https://www.docker.com/>
 
 ## Installation
 
