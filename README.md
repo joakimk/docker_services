@@ -87,7 +87,11 @@ Data is stored ourside of docker in `~/.docker_services/project_identifier/servi
 
 # Development
 
-todo
+    mix deps.get
+    mix test
+    
+    # mix escript.build
+    # scp docker_services test_server:/usr/local/bin
 
 # Release
 
