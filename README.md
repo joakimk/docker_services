@@ -12,44 +12,19 @@ We've been using tools like this at [auctionet.com](http://dev.auctionet.com) wi
 
 I've tried to release this as part of a [bigger project](https://github.com/joakimk/devbox-tools) before, but have realised that it has value as a stand alone tool.
 
-## Installing the tool
-
-First install the tool and add the `docker_services` shell function to your profile.
+## Installation
 
     curl something | bash
-    ls ~/.profile && echo 'source /usr/local/lib/docker\_services/shell' >> ~/.profile
 
 ## Hooking into "cd"
 
-This tool does not automatically override "cd", but will be much easier to use if you do.
+This tool relies on being able to change environment variables when you change directories, so it needs to hook into `cd`. However, it's fairly common for tools to redefine `cd`, and it can only be overriden once.
 
-You can check using this command:
+So first check what your `cd` does:
 
     $ type cd
 
-When there already is a function in place you will see something like this:
-
-    cd is a function
-    cd ()
-    {
-        if builtin cd "$@"; then
-            [[ -n "${rvm_current_rvmrc:-}" && "$*" == "." ]] && rvm_current_rvmrc="" || true;
-            __rvm_cd_functions_set;
-            return 0;
-        else
-            return $?;
-        fi
-    }
-
-Copy that code into your shell profile, and below `__rvm_cd_functions_set`, add `docker_services set_environment_variables` and you will be able to have both rvm and docker\_services.
-
-If there is no hook:
-
-    $ type
-    cd is a shell builtin
-
-Then you can add hook to your profile below the line that loads `docker_services`:
-
+If it says "cd is a shell builtin", then add this to your profile:
 
     source /usr/local/lib/docker_services/shell
 
@@ -62,6 +37,8 @@ Then you can add hook to your profile below the line that loads `docker_services
             return $?;
         fi
     }
+
+If it says "cd is a function", then copy that existing function, add `docker_services set_environment_variables` and use that instead.
 
 ## Usage
 
