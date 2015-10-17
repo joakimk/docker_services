@@ -50,14 +50,14 @@ If it says "cd is a function", then copy that existing function and add `docker_
 ### Start services
 
     $ docker_services start
-      Starting service: redis:2.8... done
+    Starting service: redis:2.8... done
     $ redis-cli -p $REDIS_PORT
     127.0.0.1:1234>
 
 ### Stopping services
 
     $ docker_services stop
-      Stopping service: redis:2.8... done
+    Stopping service: redis:2.8... done
 
 ### How environment variables are handled
 
