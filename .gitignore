@@ -2,6 +2,6 @@
 /cover
 /deps
 erl_crash.dump
-docker_services
+/docker_services
 tmp
 *.ez
