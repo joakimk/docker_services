@@ -16,19 +16,23 @@ defmodule DockerServices.ShellEnvironment do
     content = formatter.(envs)
     path = Path.join(project_envs_path, "#{type}.env")
 
-    if String.length(content) == 0 do
-      File.rm(path)
-    else
+    if content do
       File.mkdir_p(Path.dirname(path))
       File.write(path, formatter.(envs))
+    else
+      File.rm(path)
     end
   end
 
   defp build_load_lines(envs) do
-    envs
-    |> Enum.filter(fn {name, value} -> value != :reset end)
-    |> Enum.map(fn ({ name, value }) -> "export #{name}=#{value}" end)
-    |> Enum.join("\n")
+    # TODO: implement this in a cleaner way
+    if envs |> Enum.any?(fn {name, value} -> value == :reset end) do
+      nil
+    else
+      envs
+      |> Enum.map(fn ({ name, value }) -> "export #{name}=#{value}" end)
+      |> Enum.join("\n")
+    end
   end
 
   defp build_unload_lines(envs) do
