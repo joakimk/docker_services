@@ -100,13 +100,15 @@ It's the config format we've been using internally for various development confi
 
 # Development
 
-This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you're on OSX, just "brew install elixir".
+This is an [Elixir](http://elixir-lang.org/) project. It requires Erlang and Elixir.
+
+If you're on OSX, just run "brew install erlang && brew install elixir" to install them.
 
     mix deps.get
     mix test
 
-    # mix escript.build
-    # scp docker_services test_server:/usr/local/bin
+    # MIX_ENV=prod mix escript.build
+    # scp docker_services test_server:/usr/local/bin && ssh test_server "docker_services bootstrap"
 
 # Release
 
