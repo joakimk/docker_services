@@ -15,7 +15,12 @@ defmodule DockerServices.Docker do
 
   defp docker(command) do
     # TODO: handle exit status
-    IO.puts DockerServices.Shell.run("sudo docker " <> command)
+    result = DockerServices.Shell.run("sudo docker " <> command)
+
+    if result =~ "Error" do
+      IO.puts result
+      System.halt(1)
+    end
   end
 
   defp volume_mounts(name, docker_image) do
