@@ -21,7 +21,7 @@ defmodule DockerServices.Mixfile do
       applications: [:logger, :yaml_elixir],
       env: [
         data_root_path: "HOME_PATH/.docker_services",
-        docker_client: DockerServices.FakeDocker,
+        docker_client: DockerServices.Docker,
       ],
     ]
   end
