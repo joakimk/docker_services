@@ -88,7 +88,7 @@ Environment variables are automatically set and cleared using a "cd" hook:
 
     $ export | grep PORT
 
-You can add custom environment variables (like $PGPORT) in [DockerServices.CustomEnvironment](/lib/docker_services/custom_environment.ex). This requires rebuilding docker\_services from source. Pull requests with custom envs are welcome. If you feel the env you add isn't useful to anyone else, then let's discuss other options (config files, etc).
+You can add custom environment variables (like $PGPORT) in [DockerServices.CustomEnvironment](/lib/docker_services/custom_environment.ex). This requires [rebuilding docker\_services from source](#development). Pull requests with custom envs are welcome. If you feel the env you add isn't useful to anyone else, then let's discuss other options (config files, etc).
 
 ## Where is data stored?
 
