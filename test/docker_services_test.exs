@@ -21,7 +21,7 @@ defmodule DockerServicesTest do
     assert content =~ "function docker_services()"
   end
 
-  test "'start' starts the services specified in config" do
+  test "'start' and 'stop' starts and stops the services specified in config" do
     File.rm_rf("tmp/test_project")
     File.mkdir_p("tmp/test_project")
     File.write "tmp/test_project/dev.yml", """
@@ -31,6 +31,8 @@ defmodule DockerServicesTest do
       postgres:
         image: postgres:9.3.5
     """
+
+    ## Starting
 
     output = capture_io fn ->
       File.cd("tmp/test_project")
@@ -54,7 +56,31 @@ defmodule DockerServicesTest do
     assert content =~ "unset PGPORT"
 
     assert DockerServices.FakeDocker.last_command == %{ command: :start, name: :redis, docker_image: "redis:2.8" }
+
+    ## Stopping
+
+    output = capture_io fn ->
+      File.cd("tmp/test_project")
+      System.put_env("PWD", System.cwd)
+      DockerServices.CLI.main([ "stop" ])
+    end
+
+    assert output =~ "Stopping redis:2.8... done"
+    assert output =~ "Stopping postgres:9.3.5... done"
+
+    # no envs to load after stopping
+    refute File.exists?("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
+
+    # but we do want to unload the envs we set previously
+    { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/unload.env")
+    assert content =~ "unset REDIS_PORT"
+    assert content =~ "unset POSTGRES_PORT"
+    assert content =~ "unset PGPORT"
+
+    assert DockerServices.FakeDocker.last_command == %{ command: :stop, name: :redis }
   end
+
+  # test "'stop' when nothing is running does nothing"
 
   @root_path System.cwd
   defp root_path, do: @root_path

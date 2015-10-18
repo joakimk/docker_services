@@ -1,22 +1,34 @@
 defmodule DockerServices.Runner do
   def start do
-    start_services
+    for_each_service &start/2
+  end
+
+  def stop do
+    for_each_service &stop/2
+  end
+
+  defp for_each_service(callback) do
+    project_config.docker_services
+    |> Enum.map(fn {name, %{ image: image }} ->
+      callback.(name, image)
+    end)
     |> set_shell_environment
   end
 
-  defp start_services do
-    project_config.docker_services
-    |> Enum.map(fn {name, %{ image: image }} ->
-      start_docker_service(name, image)
-    end)
-  end
-
-  defp start_docker_service(name, docker_image) do
+  defp start(name, docker_image) do
     IO.write "Starting #{docker_image}... "
     {:ok, external_port} = docker_service.start(name, docker_image)
     IO.puts "done"
 
     {name, external_port}
+  end
+
+  defp stop(name, docker_image) do
+    IO.write "Stopping #{docker_image}... "
+    :ok = docker_service.stop(name)
+    IO.puts "done"
+
+    {name, :reset}
   end
 
   defp set_shell_environment(services) do

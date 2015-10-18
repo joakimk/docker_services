@@ -5,6 +5,7 @@ defmodule DockerServices.CLI do
   def command(:bootstrap), do: DockerServices.Bootstrap.run
   def command(:help),      do: DockerServices.Help.show
   def command(:start),     do: DockerServices.Runner.start
+  def command(:stop),      do: DockerServices.Runner.stop
 
   def command(other) do
     IO.puts "Unknown command: #{other}\n"

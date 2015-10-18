@@ -32,6 +32,7 @@ defmodule DockerServices.Bootstrap do
     function __docker_services_set_environment_variables()
     {
       [ -f #{envs_path}/$OLDPWD/unload.env ] && source #{envs_path}/$OLDPWD/unload.env
+      [ -f #{envs_path}/$PWD/unload.env ]    && source #{envs_path}/$PWD/unload.env
       [ -f #{envs_path}/$PWD/load.env ]      && source #{envs_path}/$PWD/load.env
     }
     """
