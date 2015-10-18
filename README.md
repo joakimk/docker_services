@@ -1,6 +1,6 @@
 # NOTE: Readme driven development below, this means this tool does not necessarily do what it says below yet.
 
-**Status**: It just barely works :)
+**Status**: Works fairly well. See the todo list.
 
 ## What is this?
 
@@ -130,8 +130,8 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] Implement the real docker client and make it all work
 - [x] Add support for custom ENVs for some services like postgres.
 - [x] Make it work with new images that hasn't been pulled down yet
-  - [ ] Display result from pulling new images right away, and tell the user it's happening
-  - [ ] Make sure it works the first time the command is run
+  - [x] Display result from pulling new images right away, and tell the user it's happening
+  - [x] Make sure it works the first time the command is run
   - [ ] Don't check the images list more than once?
 - [ ] Nicer behavior when you stop or start twice
 - [ ] Use in internal projects

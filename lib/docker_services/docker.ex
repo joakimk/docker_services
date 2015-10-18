@@ -1,8 +1,12 @@
 defmodule DockerServices.Docker do
+  alias DockerServices.Shell
+
   def start(name, docker_image) do
-    installed_images = DockerServices.DockerImages.parse(DockerServices.Shell.run("sudo docker images list"))
+    installed_images = DockerServices.DockerImages.parse(Shell.run!("sudo docker images"))
     unless Enum.member?(installed_images, docker_image) do
-      docker "pull #{docker_image}"
+      IO.puts "\n\nPulling docker image for #{docker_image}..."
+      docker "pull #{docker_image}", silent: false
+      IO.puts ""
     end
 
     docker "rm #{docker_name(name)}"
@@ -18,9 +22,11 @@ defmodule DockerServices.Docker do
     :ok
   end
 
-  defp docker(command) do
+
+  defp docker(command), do: docker(command, silent: true)
+  defp docker(command, silent: silent) do
     # TODO: handle exit status
-    result = DockerServices.Shell.run("sudo docker " <> command)
+    result = Shell.run!("sudo docker " <> command, silent: silent)
 
     if result =~ "Error" do
       IO.puts result
@@ -41,7 +47,7 @@ defmodule DockerServices.Docker do
   end
 
   defp metadata(identifier) do
-    DockerServices.Shell.run("sudo docker inspect #{identifier}")
+    Shell.run!("sudo docker inspect #{identifier}")
     |> DockerServices.DockerMetadata.build
   end
 

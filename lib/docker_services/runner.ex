@@ -16,7 +16,7 @@ defmodule DockerServices.Runner do
   end
 
   defp start(name, docker_image) do
-    IO.write "Starting #{docker_image}... "
+    IO.write "Starting #{name}... "
     {:ok, external_port} = docker_service.start(name, docker_image)
     IO.puts "done"
 
@@ -24,7 +24,7 @@ defmodule DockerServices.Runner do
   end
 
   defp stop(name, docker_image) do
-    IO.write "Stopping #{docker_image}... "
+    IO.write "Stopping #{name}... "
     :ok = docker_service.stop(name)
     IO.puts "done"
 
