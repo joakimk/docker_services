@@ -20,7 +20,7 @@ defmodule DockerServices.DockerMetadata do
 
   def internal_port(data) do
     data["Config"]["ExposedPorts"]
-      |> Enum.map(fn {k, v} -> k end) |> hd
+      |> Map.keys |> hd
       |> String.split("/tcp") |> hd
       |> String.to_integer
   end
