@@ -58,6 +58,8 @@ If it says "cd is a function", then copy that existing function and add `__docke
 
 ### Configure the project
 
+You can find available service images on dockerhub, ex: https://hub.docker.com/_/redis/
+
     $ cd project
     $ printf "docker_services:\n  redis:\n    image: redis:2.8\n" > dev.yml
 
