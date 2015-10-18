@@ -100,7 +100,7 @@ It's the config format we've been using internally for various development confi
 
 # Development
 
-This is an [Elixir](http://elixir-lang.org/) project. It requires Erlang and Elixir.
+This is an [Elixir](http://elixir-lang.org/) project. It being developed with Erlang 18+ and Elixir 1.1+.
 
 If you're on OSX, just run "brew install erlang && brew install elixir" to install them.
 
