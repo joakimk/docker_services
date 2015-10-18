@@ -40,8 +40,8 @@ defmodule DockerServicesTest do
       DockerServices.CLI.main([ "start" ])
     end
 
-    assert output =~ "Starting redis... done"
-    assert output =~ "Starting postgres... done"
+    assert output =~ "starting redis"
+    assert output =~ "starting postgres"
 
     # the new environment we want after running this command:
     { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
@@ -65,8 +65,8 @@ defmodule DockerServicesTest do
       DockerServices.CLI.main([ "stop" ])
     end
 
-    assert output =~ "Stopping redis... done"
-    assert output =~ "Stopping postgres... done"
+    assert output =~ "stopping redis"
+    assert output =~ "stopping postgres"
 
     # no envs to load after stopping
     refute File.exists?("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")

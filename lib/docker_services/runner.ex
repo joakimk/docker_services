@@ -16,19 +16,25 @@ defmodule DockerServices.Runner do
   end
 
   defp start(name, docker_image) do
-    IO.write "Starting #{name}... "
-    {:ok, external_port} = docker_service.start(name, docker_image)
-    IO.puts "done"
+    {:ok, external_port} =
+      with_progressbar "starting #{name}", "#{name} running", fn ->
+        docker_service.start(name, docker_image)
+      end
 
     {name, external_port}
   end
 
   defp stop(name, docker_image) do
-    IO.write "Stopping #{name}... "
-    :ok = docker_service.stop(name)
-    IO.puts "done"
+    :ok =
+      with_progressbar "stopping #{name}", "#{name} stopped", fn ->
+        docker_service.stop(name)
+      end
 
     {name, :reset}
+  end
+
+  defp with_progressbar(text, done, callback) do
+    ProgressBar.render_spinner [text: text, done: done, frames: :braille, spinner_color: IO.ANSI.blue], callback
   end
 
   defp set_shell_environment(services) do

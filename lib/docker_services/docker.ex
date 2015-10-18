@@ -9,7 +9,10 @@ defmodule DockerServices.Docker do
       IO.puts ""
     end
 
-    docker "rm #{docker_name(name)}"
+    # It's okay if this command fails, it will do that the first time when there is no image to remove, but
+    # we still have to try since run will refuse to run otherwise.
+    Shell.run "sudo docker rm #{docker_name(name)}"
+
     docker "run --detach --name #{docker_name(name)} --publish #{internal_port(docker_image)} #{volume_mounts(name, docker_image) |> Enum.join(" ")} #{docker_image}"
 
     external_port = metadata(docker_name(name)).external_port
