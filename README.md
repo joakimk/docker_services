@@ -127,6 +127,7 @@ This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you'
 - [ ] Use in internal projects
 - [ ] Add support for custom ENVs for some services like postgres.
 - [ ] Support more than one of the same service in a project?
+- [ ] Try to restore original env values that where set before this tool changed them (tricky to get right)
 - [ ] Release 1.0? :)
 
 ## License

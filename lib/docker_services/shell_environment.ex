@@ -25,15 +25,7 @@ defmodule DockerServices.ShellEnvironment do
 
   defp build_unload_lines(envs) do
     envs
-    |> Enum.map(fn ({ name, _value }) ->
-      existing_value = System.get_env(name)
-
-      if existing_value do
-        "export #{name}=#{existing_value}"
-      else
-        "unset #{name}"
-      end
-    end)
+    |> Enum.map(fn ({ name, _value }) -> "unset #{name}" end)
     |> Enum.join("\n")
   end
 

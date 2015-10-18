@@ -32,8 +32,6 @@ defmodule DockerServicesTest do
         image: postgres:9.3.5
     """
 
-    System.put_env("REDIS_PORT", "9999")
-
     output = capture_io fn ->
       File.cd("tmp/test_project")
       System.put_env("PWD", System.cwd)
@@ -50,7 +48,7 @@ defmodule DockerServicesTest do
 
     # unload.env restores the environment as it was before load.env changed it:
     { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/unload.env")
-    assert content =~ "export REDIS_PORT=9999"
+    assert content =~ "unset REDIS_PORT"
     assert content =~ "unset POSTGRES_PORT"
     assert content =~ "unset PGPORT"
 
