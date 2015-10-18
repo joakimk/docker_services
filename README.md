@@ -63,6 +63,8 @@ You can find available service images on dockerhub, ex: <https://hub.docker.com/
 
 ### Start services
 
+This will also pull down the docker image from dockerhub if it's not already installed.
+
     $ docker_services start
     Starting service: redis... done
 
