@@ -39,6 +39,7 @@ defmodule DockerServices.Mixfile do
     [
       { :yaml_elixir, github: "KamilLelonek/yaml-elixir" },
       { :yamerl, github: "yakaz/yamerl" },
+      { :poison, "~> 1.5" },
     ]
   end
 end

@@ -3,6 +3,10 @@ defmodule DockerServices.Paths do
     Path.join(data_root_path, "shell")
   end
 
+  def project_data_root do
+    Path.join([data_root_path, "projects", DockerServices.Project.identifier, "data"])
+  end
+
   def project_envs_path do
     # Must be the env PWD to match the shell scripts written by DockerServices.Bootstrap.
     # System.cwd is the absolute path, PWD can be a symlink path.

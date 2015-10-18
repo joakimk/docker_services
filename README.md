@@ -92,7 +92,7 @@ You can add custom environment variables (like $PGPORT) in [DockerServices.Custo
 
 ## Where is data stored?
 
-Data is stored outside of docker in `~/.docker_services/projects/project_identifier/service_name/volumes`. The path is mounted as a volume within the docker service when it's run.
+Data is stored outside of docker in `~/.docker_services/projects/project_identifier/data/service_name`. The path is mounted as a volume within the docker service when it's run.
 
 ## Why call the config file "dev.yml"?
 
