@@ -65,6 +65,11 @@ You can find available service images on dockerhub, ex: <https://hub.docker.com/
 
 This will also pull down the docker image from dockerhub if it's not already installed.
 
+    docker_service start
+    docker_service stop
+    
+Example:
+
 ![](https://dl.dropboxusercontent.com/u/136929/docker_services_usage.png)
 
 ### How environment variables are handled
