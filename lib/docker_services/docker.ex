@@ -24,13 +24,7 @@ defmodule DockerServices.Docker do
 
   defp docker(command), do: docker(command, silent: true)
   defp docker(command, silent: silent) do
-    # TODO: handle exit status
-    result = Shell.run!("sudo docker " <> command, silent: silent)
-
-    if result =~ "Error" do
-      IO.puts result
-      System.halt(1)
-    end
+    Shell.run!("sudo docker " <> command, silent: silent)
   end
 
   defp volume_mounts(name, docker_image) do
