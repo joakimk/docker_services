@@ -1,5 +1,10 @@
 defmodule DockerServices.Docker do
   def start(name, docker_image) do
+    installed_images = DockerServices.DockerImages.parse(DockerServices.Shell.run("sudo docker images list"))
+    unless Enum.member?(installed_images, docker_image) do
+      docker "pull #{docker_image}"
+    end
+
     docker "rm #{docker_name(name)}"
     docker "run --detach --name #{docker_name(name)} --publish #{internal_port(docker_image)} #{volume_mounts(name, docker_image) |> Enum.join(" ")} #{docker_image}"
 

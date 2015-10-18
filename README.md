@@ -129,7 +129,10 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] Move ~/.docker\_services root path into config
 - [x] Implement the real docker client and make it all work
 - [x] Add support for custom ENVs for some services like postgres.
-- [ ] Make it work with new images that hasn't been pulled down yet
+- [x] Make it work with new images that hasn't been pulled down yet
+  - [ ] Display result from pulling new images right away, and tell the user it's happening
+  - [ ] Make sure it works the first time the command is run
+  - [ ] Don't check the images list more than once?
 - [ ] Nicer behavior when you stop or start twice
 - [ ] Use in internal projects
 - [ ] Support more than one of the same service in a project?
