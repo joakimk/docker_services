@@ -4,25 +4,28 @@ defmodule DockerServices.DockerMetadata do
   def build(json) do
     [ data ] = JSON.parse(json)
 
-    internal_port = data["Config"]["ExposedPorts"]
+    %__MODULE__{
+      internal_port: internal_port(data),
+      external_port: external_port(parse_network_port(data)),
+      volumes: volumes(data)
+    }
+  end
+
+  defp parse_network_port(%{ "NetworkSettings" => %{ "Ports" => port_info } }), do: Map.values(port_info)
+  defp parse_network_port(_), do: nil
+
+  # really wish I could pattern match on map keys, I think this will be possible in elixir 1.2
+  defp external_port([[ %{ "HostPort" => port } ]]), do: String.to_integer(port)
+  defp external_port(_), do: :unknown
+
+  def internal_port(data) do
+    data["Config"]["ExposedPorts"]
       |> Enum.map(fn {k, v} -> k end) |> hd
       |> String.split("/tcp") |> hd
       |> String.to_integer
+  end
 
-    if data["NetworkSettings"] do
-      [ port ] = data["NetworkSettings"]["Ports"]["#{internal_port}/tcp"]
-      external_port = port["HostPort"] |> String.to_integer
-    else
-      external_port = nil
-    end
-
-    volumes = (data["Config"]["Volumes"] || %{})
-      |> Enum.map(fn {k, v} -> k end)
-
-    %__MODULE__{
-      internal_port: internal_port,
-      external_port: external_port,
-      volumes: volumes
-    }
+  def volumes(data) do
+    (data["Config"]["Volumes"] || %{}) |> Map.keys
   end
 end
