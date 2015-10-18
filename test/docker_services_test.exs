@@ -82,18 +82,6 @@ defmodule DockerServicesTest do
 
   # test "'stop' when nothing is running does nothing"
 
-  @root_path System.cwd
-  defp root_path, do: @root_path
-
-  #  # docker = Application.get_env(:docker_services, :docker_client)
-  #  #{:ok, external_port} = docker.start(name: name, image_name: image_name)
-  #  # write port to file, etc.
-  #  #:ok = docker.stop(name)
-  #:os.getenv [ 'a=b', '', ...
-
-  # on stop:
-  # - remove load.env
-
   test "'help' shows help text" do
     output = capture_io fn ->
       DockerServices.CLI.main([ "help" ])
@@ -111,4 +99,7 @@ defmodule DockerServicesTest do
     assert output =~ "unknown1"
     assert output =~ "Usage:"
   end
+
+  @root_path System.cwd
+  defp root_path, do: @root_path
 end
