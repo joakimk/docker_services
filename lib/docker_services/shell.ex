@@ -2,6 +2,7 @@
 # * Keep output hidden unless there is an error.
 # * Raise good error messages when there is an error.
 # * Show output while the command is running when requested.
+# * Capture output and merge stdout with stderr.
 # * Be able to ignore errors.
 
 # Might extract this to a hex package later.
