@@ -22,7 +22,6 @@ defmodule DockerServices.Docker do
     :ok
   end
 
-
   defp docker(command), do: docker(command, silent: true)
   defp docker(command, silent: silent) do
     # TODO: handle exit status
