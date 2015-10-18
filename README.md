@@ -2,7 +2,7 @@
 
 ## What is this?
 
-A tool to install and run multiple versions of services like redis or postgres on the same computer without having port collisions using docker.
+A tool to install and run multiple versions of services like redis or postgres on the same computer without having port collisions by using docker.
 
 ## Motivation
 
