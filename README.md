@@ -1,5 +1,3 @@
-**Status**: Works fairly well. Usable. See the todo list.
-
 ![](https://dl.dropboxusercontent.com/u/136929/docker_services_intro.gif)
 
 ## What is this?
