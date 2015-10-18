@@ -1,6 +1,6 @@
 # NOTE: Readme driven development below, this means this tool does not necessarily do what it says below yet.
 
-**Status**: just starting out, mostly just shell hooks, docs, etc.
+**Status**: getting close to a beta version
 
 ## What is this?
 
