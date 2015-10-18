@@ -9,7 +9,9 @@ defmodule DockerServices.CustomEnvironment do
 
   def build(:postgres, external_port) do
     [
-      { "PGPORT", external_port }
+      { "PGPORT", external_port },
+      { "PGHOST", "localhost "},
+      { "PGUSER", "postgres "},
     ]
   end
 
