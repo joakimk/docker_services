@@ -66,8 +66,7 @@ You can find available service images on dockerhub, ex: <https://hub.docker.com/
 ### Start services
 
     $ docker_services start
-    Installing service: redis:2.8... done
-    Starting service: redis:2.8... done
+    Starting service: redis... done
 
     $ redis-cli -p $REDIS_PORT
     127.0.0.1:1234>
@@ -75,7 +74,7 @@ You can find available service images on dockerhub, ex: <https://hub.docker.com/
 ### Stopping services
 
     $ docker_services stop
-    Stopping service: redis:2.8... done
+    Stopping service: redis... done
 
 ### How environment variables are handled
 
