@@ -36,7 +36,7 @@ So first check what your `cd` does:
 If it says "cd is a shell builtin", then add this to your profile:
 
     if [ -s "$HOME/.docker_services/shell" ]; then
-      source ~/.docker_services/shell
+      source $HOME/.docker_services/shell
 
       cd ()
       {
