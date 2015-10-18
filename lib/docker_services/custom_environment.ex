@@ -3,7 +3,7 @@ defmodule DockerServices.CustomEnvironment do
   Used to customize environment variables for specific services.
 
   For example, postgres command line tools like psql can use the PGPORT
-  envs to connect to a custom port. By setting it, you can use the
+  env to connect to a custom port. By setting it, you can use the
   docker postgres server just as if it was installed into the system.
   """
 
