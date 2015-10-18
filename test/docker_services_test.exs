@@ -48,27 +48,17 @@ defmodule DockerServicesTest do
     assert content =~ "export POSTGRES_PORT=5555"
     assert content =~ "export PGPORT=5555"
 
-    # TODO: write unsets/resets code, currently stubbed as unset to try it out
-
-    ### unload.env restores the environment as it was before load.env changed it:
-    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/projects/#{project_identifier}/unload.env")
-    #assert content == "export REDIS_PORT=9999"
+    # unload.env restores the environment as it was before load.env changed it:
+    { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/unload.env")
+    assert content =~ "export REDIS_PORT=9999"
+    assert content =~ "unset POSTGRES_PORT"
+    assert content =~ "unset PGPORT"
 
     #assert FakeDocker.last_command == %{ command: start, name: "redis", docker_image: "redis:2.8" }
-
-    # on start:
-    # unload.env:
-    # - for all env names we add:
-    #   - if they already exist, write an export statement for the current value
-    #   - if they don't exist, write an unset statement
-    # load.env:
-    # - for all env names we add:
-    #   - write export statements
   end
 
   @root_path System.cwd
   defp root_path, do: @root_path
-
 
   #  # docker = Application.get_env(:docker_services, :docker_client)
   #  #{:ok, external_port} = docker.start(name: name, image_name: image_name)
@@ -77,12 +67,7 @@ defmodule DockerServicesTest do
   #:os.getenv [ 'a=b', '', ...
 
   # on stop:
-  # load.env:
-  # - copy unload.env
-
-  # after commands run or on cd:
-  # source ~/.docker_services/envs/$OLDPWD/unload.env
-  # source ~/.docker_services/envs/$PWD/load.env
+  # - remove load.env
 
   test "'help' shows help text" do
     output = capture_io fn ->
