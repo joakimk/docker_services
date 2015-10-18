@@ -3,7 +3,7 @@
 use Mix.Config
 
 if Mix.env == :test do
-  config :docker_services, shell_file_path: "tmp/shell"
+  config :docker_services, data_root_path: "tmp/docker_services"
 end
 
 # This configuration is loaded before any dependency and is restricted

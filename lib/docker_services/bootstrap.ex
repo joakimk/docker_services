@@ -34,8 +34,5 @@ defmodule DockerServices.Bootstrap do
     """
   end
 
-  defp shell_file_path do
-    Application.get_env(:docker_services, :shell_file_path)
-    |> String.replace("HOME_PATH", System.get_env("HOME"))
-  end
+  defp shell_file_path, do: DockerServices.Config.shell_file_path
 end

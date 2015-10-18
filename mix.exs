@@ -20,7 +20,7 @@ defmodule DockerServices.Mixfile do
     [
       applications: [:logger, :yaml_elixir],
       env: [
-        shell_file_path: "HOME_PATH/.docker_services/shell"
+        data_root_path: "HOME_PATH/.docker_services",
       ],
     ]
   end
