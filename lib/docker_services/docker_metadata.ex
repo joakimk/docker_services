@@ -9,7 +9,13 @@ defmodule DockerServices.DockerMetadata do
       |> String.split("/tcp") |> hd
       |> String.to_integer
 
-    external_port = nil
+    if data["NetworkSettings"] do
+      [ port ] = data["NetworkSettings"]["Ports"]["#{internal_port}/tcp"]
+      external_port = port["HostPort"] |> String.to_integer
+    else
+      external_port = nil
+    end
+
     volumes = (data["Config"]["Volumes"] || %{})
       |> Enum.map(fn {k, v} -> k end)
 

@@ -1,6 +1,6 @@
 # NOTE: Readme driven development below, this means this tool does not necessarily do what it says below yet.
 
-**Status**: getting close to a beta version
+**Status**: It just barely works :)
 
 ## What is this?
 
@@ -125,7 +125,7 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] Implement start with a fake docker client
 - [x] Implement stop with a fake docker client
 - [x] Move ~/.docker\_services root path into config
-- [ ] Implement the real docker client and make it all work
+- [x] Implement the real docker client and make it all work
 - [ ] Nicer behavior when you stop or start twice
 - [ ] Use in internal projects
 - [ ] Add support for custom ENVs for some services like postgres.

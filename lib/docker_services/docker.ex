@@ -3,7 +3,7 @@ defmodule DockerServices.Docker do
     docker "rm #{docker_name(name)}"
     docker "run --detach --name #{docker_name(name)} --publish #{internal_port(docker_image)} #{volume_mounts(name, docker_image) |> Enum.join(" ")} #{docker_image}"
 
-    external_port = -1
+    external_port = metadata(docker_name(name)).external_port
     {:ok, external_port}
   end
 
@@ -14,7 +14,8 @@ defmodule DockerServices.Docker do
   end
 
   defp docker(command) do
-    IO.puts "Command to run: sudo docker " <> command
+    # TODO: handle exit status
+    IO.puts DockerServices.Shell.run("sudo docker " <> command)
   end
 
   defp volume_mounts(name, docker_image) do
@@ -25,12 +26,12 @@ defmodule DockerServices.Docker do
     end
   end
 
-  defp internal_port(docker_image) do
-    metadata(docker_image).internal_port
+  defp internal_port(identifier) do
+    metadata(identifier).internal_port
   end
 
-  defp metadata(docker_image) do
-    DockerServices.Shell.run("sudo docker inspect #{docker_image}")
+  defp metadata(identifier) do
+    DockerServices.Shell.run("sudo docker inspect #{identifier}")
     |> DockerServices.DockerMetadata.build
   end
 

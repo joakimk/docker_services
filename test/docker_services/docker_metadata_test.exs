@@ -18,7 +18,31 @@ defmodule DockerServices.DockerMetadataTest do
 
     assert metadata.internal_port == 6379
     assert metadata.volumes == [ "/data" ]
-    # assert metadata.external_port == TODO
+  end
+
+  test "extracts external_port when available" do
+    metadata = DockerServices.DockerMetadata.build(
+    """
+    [{
+        "Config": {
+            "ExposedPorts": {
+                "6379/tcp": {}
+            }
+        },
+        "NetworkSettings": {
+          "Ports": {
+            "6379/tcp": [
+              {
+                  "HostIp": "0.0.0.0",
+                  "HostPort": "32776"
+              }
+            ]
+          }
+        }
+    }]
+    """)
+
+    assert metadata.external_port == 32776
   end
 
   test "handles missing volume data" do
