@@ -121,9 +121,10 @@ This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you'
 # TODO
 
 - [x] Implement start with a fake docker client
-- [ ] Implement stop with a fake docker client
-- [ ] Implement the real docker client and make it all work
+- [x] Implement stop with a fake docker client
 - [x] Move ~/.docker\_services root path into config
+- [ ] Implement the real docker client and make it all work
+- [ ] Nicer behavior when you stop or start twice
 - [ ] Use in internal projects
 - [ ] Add support for custom ENVs for some services like postgres.
 - [ ] Support more than one of the same service in a project?

@@ -3,7 +3,9 @@
 use Mix.Config
 
 if Mix.env == :test do
-  config :docker_services, data_root_path: Path.join(System.cwd, "tmp/docker_services")
+  config :docker_services,
+    data_root_path: Path.join(System.cwd, "tmp/docker_services"),
+    docker_client: DockerServices.FakeDocker
 end
 
 # This configuration is loaded before any dependency and is restricted
