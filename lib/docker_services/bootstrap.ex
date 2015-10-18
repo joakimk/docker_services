@@ -37,6 +37,6 @@ defmodule DockerServices.Bootstrap do
     """
   end
 
-  defp envs_path, do: DockerServices.Config.envs_path
-  defp shell_file_path, do: DockerServices.Config.shell_file_path
+  defp envs_path, do: DockerServices.Paths.envs_path
+  defp shell_file_path, do: DockerServices.Paths.shell_file_path
 end

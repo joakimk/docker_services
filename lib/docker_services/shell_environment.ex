@@ -28,5 +28,5 @@ defmodule DockerServices.ShellEnvironment do
     |> Enum.join("\n")
   end
 
-  defp project_envs_path, do: DockerServices.Config.project_envs_path
+  defp project_envs_path, do: DockerServices.Paths.project_envs_path
 end

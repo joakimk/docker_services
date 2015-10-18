@@ -97,6 +97,4 @@ defmodule DockerServicesTest do
     assert output =~ "unknown1"
     assert output =~ "Usage:"
   end
-
-  defp project_identifier, do: DockerServices.Project.identifier
 end
