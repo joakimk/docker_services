@@ -13,9 +13,9 @@ defmodule DockerServices.Runner do
 
   defp start_docker_service(name, docker_image) do
     IO.write "Starting #{docker_image}... "
+    {:ok, external_port} = docker_service.start(name, docker_image)
     IO.puts "done"
 
-    external_port = 5555
     {name, external_port}
   end
 
@@ -34,5 +34,6 @@ defmodule DockerServices.Runner do
     ] ++ DockerServices.CustomEnvironment.build(name, external_port)
   end
 
+  defp docker_service, do: Application.get_env(:docker_services, :docker_client)
   defp project_config, do: DockerServices.ProjectConfig.load
 end

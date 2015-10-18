@@ -39,6 +39,7 @@ defmodule DockerServicesTest do
     end
 
     assert output =~ "Starting redis:2.8... done"
+    assert output =~ "Starting postgres:9.3.5... done"
 
     # the new environment we want after running this command:
     { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
@@ -52,7 +53,7 @@ defmodule DockerServicesTest do
     assert content =~ "unset POSTGRES_PORT"
     assert content =~ "unset PGPORT"
 
-    #assert FakeDocker.last_command == %{ command: start, name: "redis", docker_image: "redis:2.8" }
+    assert DockerServices.FakeDocker.last_command == %{ command: :start, name: :redis, docker_image: "redis:2.8" }
   end
 
   @root_path System.cwd
