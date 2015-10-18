@@ -3,9 +3,14 @@ defmodule DockerServicesTest do
   import ExUnit.CaptureIO
   doctest DockerServices
 
-  test "'bootstrap' generates a shell file" do
+  setup do
+    File.cd(root_path)
     File.rm_rf("tmp/docker_services")
+    System.put_env("PWD", System.cwd)
+    :ok
+  end
 
+  test "'bootstrap' generates a shell file" do
     output = capture_io fn ->
       DockerServices.CLI.main([ "bootstrap" ])
     end
@@ -29,23 +34,36 @@ defmodule DockerServicesTest do
 
     output = capture_io fn ->
       File.cd("tmp/test_project")
+      System.put_env("PWD", System.cwd)
       DockerServices.CLI.main([ "start" ])
     end
 
     assert output =~ "Starting redis:2.8... done"
 
-    # TODO: implement:
-
     # the new environment we want after running this command:
-    #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/projects/#{project_identifier}/load.env")
-    #assert content == "export REDIS_PORT=5555"
+    { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
+    assert content == "export REDIS_PORT=5555"
+
+    # TODO: write unsets/resets code, currently stubbed as unset to try it out
 
     ### unload.env restores the environment as it was before load.env changed it:
     #{ :ok, content } = File.read("#{System.get_env("HOME")}/.docker_services/projects/#{project_identifier}/unload.env")
     #assert content == "export REDIS_PORT=9999"
 
     #assert FakeDocker.last_command == %{ command: start, name: "redis", docker_image: "redis:2.8" }
+
+    # on start:
+    # unload.env:
+    # - for all env names we add:
+    #   - if they already exist, write an export statement for the current value
+    #   - if they don't exist, write an unset statement
+    # load.env:
+    # - for all env names we add:
+    #   - write export statements
   end
+
+  @root_path System.cwd
+  defp root_path, do: @root_path
 
 
   #  # docker = Application.get_env(:docker_services, :docker_client)
@@ -53,15 +71,6 @@ defmodule DockerServicesTest do
   #  # write port to file, etc.
   #  #:ok = docker.stop(name)
   #:os.getenv [ 'a=b', '', ...
-
-  # on start:
-  # unload.env:
-  # - for all env names we add:
-  #   - if they already exist, write an export statement for the current value
-  #   - if they don't exist, write an unset statement
-  # load.env:
-  # - for all env names we add:
-  #   - write export statements
 
   # on stop:
   # load.env:

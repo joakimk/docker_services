@@ -17,9 +17,13 @@ defmodule DockerServices.Bootstrap do
       /usr/local/bin/docker_services $@
       exit_status=$?
 
-      # Reload this script after bootstrap has been run since it might have changed
-      if [ "$1" == "bootstrap" ]; then
-        source "#{shell_file_path}"
+      if [ $exit_status == 0 ]; then
+        __docker_services_set_environment_variables
+
+        # Reload this script after bootstrap has been run since it might have changed
+        if [ "$1" == "bootstrap" ]; then
+          source "#{shell_file_path}"
+        fi
       fi
 
       return $exit_status
@@ -27,12 +31,12 @@ defmodule DockerServices.Bootstrap do
 
     function __docker_services_set_environment_variables()
     {
-      # docker_services will set envs here later without running any elixir code
-      # as that is a bit too slow to do while navigating the filesystem
-      echo "" > /dev/null # bash needs at least one line of code here... :(
+      [ -f #{envs_path}/$OLDPWD/unload.env ] && source #{envs_path}/$OLDPWD/unload.env
+      [ -f #{envs_path}/$PWD/load.env ]      && source #{envs_path}/$PWD/load.env
     }
     """
   end
 
+  defp envs_path, do: DockerServices.Config.envs_path
   defp shell_file_path, do: DockerServices.Config.shell_file_path
 end

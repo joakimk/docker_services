@@ -8,6 +8,8 @@ defmodule DockerServices.Runner do
 
   def start(name, docker_image) do
     IO.write "Starting #{docker_image}... "
+    new_envs = %{ "REDIS_PORT" => "5555" }
+    DockerServices.ShellEnvironment.set(new_envs)
     IO.puts "done"
   end
 
