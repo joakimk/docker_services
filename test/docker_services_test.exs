@@ -44,7 +44,9 @@ defmodule DockerServicesTest do
 
     # the new environment we want after running this command:
     { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
-    assert content == "export POSTGRES_PORT=5555\nexport REDIS_PORT=5555"
+    assert content =~ "export REDIS_PORT=5555"
+    assert content =~ "export POSTGRES_PORT=5555"
+    assert content =~ "export PGPORT=5555"
 
     # TODO: write unsets/resets code, currently stubbed as unset to try it out
 

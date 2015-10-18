@@ -124,6 +124,7 @@ This is an [elixir](http://elixir-lang.org/) project. Go get that first. If you'
 - [x] Move ~/.docker\_services root path into config
 - [ ] Use in internal projects
 - [ ] Add support for custom ENVs for some services like postgres.
+- [ ] Support more than one of the same service in a project?
 - [ ] Release 1.0? :)
 
 ## License
