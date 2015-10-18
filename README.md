@@ -61,20 +61,11 @@ You can find available service images on dockerhub, ex: <https://hub.docker.com/
     $ cd project
     $ printf "docker_services:\n  redis:\n    image: redis:2.8\n" > dev.yml
 
-### Start services
+### Starting and stopping services
 
 This will also pull down the docker image from dockerhub if it's not already installed.
 
-    $ docker_services start
-    Starting service: redis... done
-
-    $ redis-cli -p $REDIS_PORT
-    127.0.0.1:1234>
-
-### Stopping services
-
-    $ docker_services stop
-    Stopping service: redis... done
+![](https://dl.dropboxusercontent.com/u/136929/docker_services_usage.png)
 
 ### How environment variables are handled
 
