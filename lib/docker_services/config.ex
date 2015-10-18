@@ -18,8 +18,6 @@ defmodule DockerServices.Config do
     Path.join([data_root_path, "projects", project_identifier])
   end
 
-  defp project_identifier, do: DockerServices.Project.identifier
-
   defp data_root_path do
     Application.get_env(:docker_services, :data_root_path)
     |> String.replace("HOME_PATH", System.get_env("HOME"))
