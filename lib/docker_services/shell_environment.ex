@@ -1,19 +1,20 @@
 defmodule DockerServices.ShellEnvironment do
-  def set(new_environmoent_variables) do
-    write_load_file new_environmoent_variables
-    write_unload_file new_environmoent_variables
+  def set(envs) do
+    write_load_file envs
+    write_unload_file envs
   end
 
-  defp write_load_file(new_environment_variables) do
-    File.mkdir_p(project_envs_path)
-    File.write Path.join(project_envs_path, "load.env"), export_lines(new_environment_variables)
-    new_environment_variables
+  defp write_load_file(envs) do
+    write_env_file(envs, "load", &export_lines/1)
   end
 
-  defp write_unload_file(new_environment_variables) do
+  defp write_unload_file(envs) do
+    write_env_file(envs, "unload", &unset_lines/1)
+  end
+
+  def write_env_file(envs, type, formatter) do
     File.mkdir_p(project_envs_path)
-    File.write Path.join(project_envs_path, "unload.env"), unset_lines(new_environment_variables)
-    new_environment_variables
+    File.write(Path.join(project_envs_path, "#{type}.env"), formatter.(envs))
   end
 
   defp export_lines(envs) do
