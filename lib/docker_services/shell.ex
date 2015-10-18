@@ -1,9 +1,10 @@
-# Might extract this to a library later.
-
-# It's a shell library that does what you want in these kinds of scripts:
+# This is a small shell command library that does what you want in these kinds of scripts:
 # * Keep output hidden unless there is an error.
-# * Raise good error messages.
-# * Show output while the command is running when given "silent: false"
+# * Raise good error messages when there is an error.
+# * Show output while the command is running when requested.
+# * Be able to ignore errors.
+
+# Might extract this to a hex package later.
 
 defmodule DockerServices.Shell do
   def run!(command), do: run!(command, silent: true)
