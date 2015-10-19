@@ -8,8 +8,11 @@ defmodule DockerServices.CustomEnvironment do
   """
 
   def build(:redis, external_port) do
+    redis_url = "redis://127.0.0.1:#{external_port}"
+
     [
-      { "REDIS_URL", "redis://127.0.0.1:#{external_port}" }
+      { "REDIS_URL", redis_url },
+      { "REDIS_PROVIDER", redis_url },
     ]
   end
 
