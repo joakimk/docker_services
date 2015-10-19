@@ -12,7 +12,7 @@ defmodule DockerServices.Bootstrap do
   end
 
   defp write_shell_script do
-    File.write shell_file_path, """
+    File.write(shell_file_path, """
     function docker_services() {
       /usr/local/bin/docker_services $@
       exit_status=$?
@@ -35,7 +35,13 @@ defmodule DockerServices.Bootstrap do
       [ -f #{envs_path}/$PWD/unload.env ]    && source #{envs_path}/$PWD/unload.env
       [ -f #{envs_path}/$PWD/load.env ]      && source #{envs_path}/$PWD/load.env
     }
-    """
+    """)
+    |> handle_write_result
+  end
+
+  defp handle_write_result(:ok), do: nil
+  defp handle_write_result({:error, reason}) do
+    raise "Could not write shell file at '#{shell_file_path}' :(. Maybe some permission issue? The reason given was: #{reason}"
   end
 
   defp envs_path, do: DockerServices.Paths.envs_path

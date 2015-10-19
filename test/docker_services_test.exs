@@ -21,6 +21,15 @@ defmodule DockerServicesTest do
     assert content =~ "function docker_services()"
   end
 
+  test "'bootstrap' has a helpful error message when it fails" do
+    File.mkdir_p("tmp/docker_services")
+    File.chmod("tmp/docker_services", 0)
+
+    assert_raise RuntimeError, ~r{Could not write.+shell.+eacces}, fn ->
+      DockerServices.CLI.main([ "bootstrap" ])
+    end
+  end
+
   test "'start' and 'stop' starts and stops the services specified in config" do
     File.rm_rf("tmp/test_project")
     File.mkdir_p("tmp/test_project")
