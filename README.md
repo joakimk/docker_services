@@ -131,6 +131,9 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
   - [ ] NICE: Don't check the images list more than once?
 - [ ] Nicer behavior when you stop or start twice
 - [ ] Use in internal projects
+  - [x] Add to chef recipes and make sure it works
+  - [ ] Try using it in a project
+  - [ ] See if we could use simpler updates than applying the chef recipes
 - [ ] Support more than one of the same service in a project?
 - [ ] Try to restore original env values that where set before this tool changed them (tricky to get right)
 - [ ] Release 1.0? :)
