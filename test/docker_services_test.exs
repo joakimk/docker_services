@@ -89,8 +89,6 @@ defmodule DockerServicesTest do
     assert DockerServices.FakeDocker.last_command == %{ command: :stop, name: :redis }
   end
 
-  # test "'stop' when nothing is running does nothing"
-
   test "'help' shows help text" do
     output = capture_io fn ->
       DockerServices.CLI.main([ "help" ])

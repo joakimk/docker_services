@@ -20,7 +20,9 @@ defmodule DockerServices.Docker do
   end
 
   def stop(name) do
-    docker "stop #{docker_name(name)}"
+    result = Shell.run("sudo docker ps | grep #{docker_name(name)}")
+
+    if elem(result, 0) == :ok, do: docker "stop #{docker_name(name)}"
 
     :ok
   end
