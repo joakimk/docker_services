@@ -17,7 +17,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
-    curl -L https://github.com/joakimk/docker_services/releases/download/v0.0.3/docker_services \
+    curl -L https://github.com/joakimk/docker_services/releases/download/v0.0.4/docker_services \
             > /tmp/docker_services && \
             chmod +x /tmp/docker_services && \
             sudo mv /tmp/docker_services /usr/local/bin && \
