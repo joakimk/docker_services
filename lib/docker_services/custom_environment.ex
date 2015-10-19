@@ -7,6 +7,12 @@ defmodule DockerServices.CustomEnvironment do
   docker postgres server just as if it was installed into the system.
   """
 
+  def build(:redis, external_port) do
+    [
+      { "REDIS_URL", "redis://127.0.0.1:#{external_port}" }
+    ]
+  end
+
   def build(:postgres, external_port) do
     [
       { "PGPORT", external_port },
