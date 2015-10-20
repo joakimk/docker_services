@@ -136,11 +136,13 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] Make it work with new images that hasn't been pulled down yet
   - [x] Display result from pulling new images right away, and tell the user it's happening
   - [x] Make sure it works the first time the command is run
-- [ ] Use in internal projects
+- [x] Use in internal projects
   - [x] Add to chef recipes and make sure it works
   - [x] Try using it in a project
-  - [ ] See if we could use simpler updates than applying the chef recipes
+  - [x] See if we could use simpler updates than applying the chef recipes (wontfix for now, want it locked down to a known good version, might work on update-available-notifications instead)
 - [ ] Ensure it works in zsh
+  - [x] Try to reproduce the error myself (could not reproduce)
+  - [ ] Wait for feedback from a zsh user at work
 - [ ] Release 1.0? :)
 
 Ideas for after 1.0:
