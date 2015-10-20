@@ -22,8 +22,13 @@ defmodule DockerServices.Shell do
     end
   end
 
+  @env Mix.env
   def run(command), do: run(command, silent: true)
   def run(command, silent: silent) do
+    # sudo is needed to restore files with the right permissions and owners but
+    # is unpractical to run in tests as a password prompt could lock up the test suite
+    if @env == :test, do: command = String.replace(command, "sudo", "")
+
     port = Port.open({:spawn, command}, [:stderr_to_stdout, :exit_status])
 
     {output, exit_status} = wait_for_command_to_finish(port, silent)

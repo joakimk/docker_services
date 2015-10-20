@@ -10,6 +10,7 @@ defmodule DockerServices.Backup do
   def restore(service, archive_path) do
     within_project_data_root fn ->
       with_progressbar "restore #{service} from #{archive_path}", "#{service} restored", fn ->
+        DockerServices.Shell.run("sudo rm -rf #{service}") # okay if this fails
         DockerServices.Shell.run("sudo tar xfz #{archive_path}")
       end
     end
