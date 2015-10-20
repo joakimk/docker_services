@@ -141,6 +141,7 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
   - [ ] See if we could use simpler updates than applying the chef recipes
 - [ ] Support more than one of the same service in a project?
 - [ ] Try to restore original env values that where set before this tool changed them (tricky to get right)
+- [ ] Ensure it works in zsh
 - [ ] Release 1.0? :)
 
 Ideas for after 1.0:
