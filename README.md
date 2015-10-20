@@ -140,7 +140,6 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
   - [x] Add to chef recipes and make sure it works
   - [x] Try using it in a project
   - [ ] See if we could use simpler updates than applying the chef recipes
-- [ ] Try to restore original env values that where set before this tool changed them (tricky to get right)
 - [ ] Ensure it works in zsh
 - [ ] Release 1.0? :)
 
