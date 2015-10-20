@@ -55,9 +55,9 @@ defmodule DockerServicesTest do
 
     # the new environment we want after running this command:
     { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
-    assert content =~ "export REDIS_PORT=5555"
-    assert content =~ "export POSTGRES_PORT=5555"
-    assert content =~ "export PGPORT=5555"
+    assert content =~ "export REDIS_PORT=21000"
+    assert content =~ "export POSTGRES_PORT=20000"
+    assert content =~ "export PGPORT=20000"
 
     # unload.env restores the environment as it was before load.env changed it:
     { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/unload.env")
@@ -88,6 +88,38 @@ defmodule DockerServicesTest do
     assert content =~ "unset PGPORT"
 
     assert DockerServices.FakeDocker.last_command == %{ command: :stop, name: :redis }
+  end
+
+  test "can have multiple services of the same type" do
+    File.rm_rf("tmp/test_project")
+    File.mkdir_p("tmp/test_project")
+    File.write "tmp/test_project/dev.yml", """
+    docker_services:
+      redis1:
+        image: redis:2.8
+      redis2:
+        image: redis:2.8
+    """
+
+    ## Starting
+
+    output = capture_io fn ->
+      File.cd("tmp/test_project")
+      System.put_env("PWD", System.cwd)
+      DockerServices.CLI.main([ "start" ])
+    end
+
+    assert output =~ "starting redis1"
+    assert output =~ "starting redis2"
+
+    { :ok, content } = File.read("#{root_path}/tmp/docker_services/envs/#{root_path}/tmp/test_project/load.env")
+    assert content =~ "export REDIS1_PORT=21001"
+    assert content =~ "export REDIS2_PORT=21002"
+
+    # Sets custom ports from the last of a type
+    assert content =~ "export REDIS_PROVIDER=redis://127.0.0.1:21002"
+
+    assert DockerServices.FakeDocker.last_command == %{ command: :start, name: :redis2, docker_image: "redis:2.8" }
   end
 
   test "'help' shows help text" do

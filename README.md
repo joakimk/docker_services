@@ -132,6 +132,7 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] Add support for custom ENVs for some services like postgres.
 - [x] Handle exit status in Docker
 - [x] Nicer behavior when you stop or start twice
+- [x] Support more than one of the same service in a project?
 - [x] Make it work with new images that hasn't been pulled down yet
   - [x] Display result from pulling new images right away, and tell the user it's happening
   - [x] Make sure it works the first time the command is run
@@ -139,7 +140,6 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
   - [x] Add to chef recipes and make sure it works
   - [x] Try using it in a project
   - [ ] See if we could use simpler updates than applying the chef recipes
-- [ ] Support more than one of the same service in a project?
 - [ ] Try to restore original env values that where set before this tool changed them (tricky to get right)
 - [ ] Ensure it works in zsh
 - [ ] Release 1.0? :)
