@@ -85,7 +85,13 @@ Environment variables are automatically set and cleared using a "cd" hook:
 
     $ export | grep PORT
 
+### Custom environment variables
+
 You can add custom environment variables (like $PGPORT) in [DockerServices.CustomEnvironment](/lib/docker_services/custom_environment.ex). This requires [rebuilding docker\_services from source](#development). Pull requests with custom envs are welcome. If you feel the env you add isn't useful to anyone else, then let's discuss other options (config files, etc).
+
+Heroku compatibility:
+
+As far as possible the [DockerServices.CustomEnvironment](/lib/docker_services/custom_environment.ex) variables will have the same names as used on heroku, e.g. `$REDIS_PROVIDER`. This simplifies app config.
 
 ## Where is data stored?
 
