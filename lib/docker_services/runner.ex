@@ -33,9 +33,7 @@ defmodule DockerServices.Runner do
     {name, docker_image, :reset}
   end
 
-  defp with_progressbar(text, done, callback) do
-    ProgressBar.render_spinner [text: text, done: done, frames: :braille, spinner_color: IO.ANSI.blue], callback
-  end
+  defp with_progressbar(text, done, callback), do: DockerServices.WithProgressBar.run(text, done, callback)
 
   defp set_shell_environment(services) do
     services

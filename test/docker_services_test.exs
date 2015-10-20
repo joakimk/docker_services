@@ -7,6 +7,7 @@ defmodule DockerServicesTest do
     File.cd(root_path)
     File.chmod("tmp/docker_services", 755)
     File.rm_rf("tmp/docker_services")
+    File.rm_rf("tmp/backup.tar.gz")
     System.put_env("PWD", System.cwd)
     :ok
   end
@@ -120,6 +121,29 @@ defmodule DockerServicesTest do
     assert content =~ "export REDIS_PROVIDER=redis://127.0.0.1:21002"
 
     assert DockerServices.FakeDocker.last_command == %{ command: :start, name: :redis2, docker_image: "redis:2.8" }
+  end
+
+  test "'backup' creates a tar.gz of the data of a service" do
+    File.rm_rf("tmp/test_project")
+    File.mkdir_p("tmp/test_project")
+    File.write "tmp/test_project/dev.yml", """
+    docker_services:
+      redis:
+        image: redis:2.8
+    """
+
+    File.cd("tmp/test_project")
+    pwd = System.cwd
+    System.put_env("PWD", pwd)
+    File.mkdir_p("#{DockerServices.Paths.project_data_root}/redis/file_from_backup")
+
+    capture_io fn ->
+      DockerServices.CLI.main([ "backup", "redis", "#{root_path}/tmp/backup.tar.gz" ])
+    end
+
+    File.cd("#{root_path}/tmp")
+    { :ok, output, 0 } = DockerServices.Shell.run("tar xvfz backup.tar.gz")
+    assert output =~ "x redis/file_from_backup"
   end
 
   test "'help' shows help text" do

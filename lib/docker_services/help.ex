@@ -15,6 +15,7 @@ defmodule DockerServices.Help do
       cd project
       docker_services start
       docker_services stop
+      docker_services backup [service] [archive.tar.gz]
 
     For more information see https://github.com/joakimk/docker_services
     """

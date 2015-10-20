@@ -147,8 +147,9 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 
 Ideas for after 1.0:
 
-- [ ] "docker_services backup postgres /tmp/postgres.tar.gz" to create a .tar.gz file of the service data
+- [x] "docker_services backup postgres /tmp/postgres.tar.gz" to create a .tar.gz file of the service data
 - [ ] "docker_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
+- [ ] only stop the service that is being backed up or restored
 - [ ] "docker_services ps"
 - [ ] Add CI
 

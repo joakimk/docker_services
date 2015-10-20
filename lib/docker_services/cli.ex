@@ -1,4 +1,10 @@
 defmodule DockerServices.CLI do
+  def main([ "backup", service, archive_path ]) do
+    command(:stop)
+    DockerServices.Backup.backup(service, archive_path)
+    command(:start)
+  end
+
   def main([]),   do: command("")
   def main(args), do: command(args |> hd |> String.to_atom)
 
