@@ -17,7 +17,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
 
 ## Installation
 
-    curl -L https://github.com/joakimk/docker_services/releases/download/v0.0.4/docker_services \
+    curl -L https://github.com/joakimk/docker_services/releases/download/v0.9.1/docker_services \
             > /tmp/docker_services && \
             chmod +x /tmp/docker_services && \
             sudo mv /tmp/docker_services /usr/local/bin && \
@@ -148,7 +148,7 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 Ideas for after 1.0:
 
 - [x] "docker_services backup postgres /tmp/postgres.tar.gz" to create a .tar.gz file of the service data
-- [ ] "docker_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
+- [x] "docker_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
 - [ ] only stop the service that is being backed up or restored
 - [ ] "docker_services ps"
 - [ ] Add CI

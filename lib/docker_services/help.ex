@@ -16,6 +16,7 @@ defmodule DockerServices.Help do
       docker_services start
       docker_services stop
       docker_services backup [service] [archive.tar.gz]
+      docker_services restore [service] [archive.tar.gz]
 
     For more information see https://github.com/joakimk/docker_services
     """

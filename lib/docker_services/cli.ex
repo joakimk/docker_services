@@ -5,6 +5,12 @@ defmodule DockerServices.CLI do
     command(:start)
   end
 
+  def main([ "restore", service, archive_path ]) do
+    command(:stop)
+    DockerServices.Backup.restore(service, archive_path)
+    command(:start)
+  end
+
   def main([]),   do: command("")
   def main(args), do: command(args |> hd |> String.to_atom)
 

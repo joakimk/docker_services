@@ -123,7 +123,7 @@ defmodule DockerServicesTest do
     assert DockerServices.FakeDocker.last_command == %{ command: :start, name: :redis2, docker_image: "redis:2.8" }
   end
 
-  test "'backup' creates a tar.gz of the data of a service" do
+  test "'backup' and 'restore' creates and restores data from tar.gz" do
     File.rm_rf("tmp/test_project")
     File.mkdir_p("tmp/test_project")
     File.write "tmp/test_project/dev.yml", """
@@ -135,15 +135,27 @@ defmodule DockerServicesTest do
     File.cd("tmp/test_project")
     pwd = System.cwd
     System.put_env("PWD", pwd)
-    File.mkdir_p("#{DockerServices.Paths.project_data_root}/redis/file_from_backup")
+    file_from_backup_path = "#{DockerServices.Paths.project_data_root}/redis/file_from_backup"
+    File.mkdir_p(file_from_backup_path)
 
-    capture_io fn ->
+    command_output = capture_io fn ->
+      # Backup
       DockerServices.CLI.main([ "backup", "redis", "#{root_path}/tmp/backup.tar.gz" ])
+      File.rm_rf(file_from_backup_path)
+      refute File.exists?(file_from_backup_path)
+
+      # Restore
+      DockerServices.CLI.main([ "restore", "redis", "#{root_path}/tmp/backup.tar.gz" ])
+      assert File.exists?(file_from_backup_path)
     end
 
+    assert command_output =~ "backing up redis"
+    assert command_output =~ "redis restored"
+
+    # Check the contents of the file
     File.cd("#{root_path}/tmp")
-    { :ok, output, 0 } = DockerServices.Shell.run("tar xvfz backup.tar.gz")
-    assert output =~ "x redis/file_from_backup"
+    { :ok, tar_output, 0 } = DockerServices.Shell.run("tar xvfz backup.tar.gz")
+    assert tar_output =~ "x redis/file_from_backup"
   end
 
   test "'help' shows help text" do
