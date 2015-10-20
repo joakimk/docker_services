@@ -5,6 +5,7 @@ defmodule DockerServicesTest do
 
   setup do
     File.cd(root_path)
+    File.chmod("tmp/docker_services", 755)
     File.rm_rf("tmp/docker_services")
     System.put_env("PWD", System.cwd)
     :ok
