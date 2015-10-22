@@ -165,6 +165,7 @@ Ideas for after 1.0:
   - `docker_services restore all /tmp/data.tar.gz`
 - [ ] only stop the service that is being backed up or restored
   - slightly trick due to shell env being set from all services that has been started, refactor that first
+- [ ] Restore the same port a service had before restart if it's still available (removes the need to restart webservers and such)
 - [ ] "docker\_services ps"
 
 ## License
