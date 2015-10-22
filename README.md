@@ -1,7 +1,5 @@
 ![](https://dl.dropboxusercontent.com/u/136929/docker_services_intro.gif)
 
-* [CircleCi](https://circleci.com/gh/joakimk/docker_services)
-
 ## What is this?
 
 A tool to install and run multiple versions of services like redis or postgres on the same computer without having port collisions by using docker.
@@ -114,6 +112,10 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 
     # MIX_ENV=prod mix escript.build
     # scp docker_services test_server:/usr/local/bin && ssh test_server "docker_services bootstrap"
+
+# CI
+
+[CircleCi](https://circleci.com/gh/joakimk/docker_services)
 
 # Release
 
