@@ -152,6 +152,7 @@ Ideas for after 1.0:
 - [x] remove any existing file before restoring
 - [x] check if ensure works on a new machine, may have to add a mkdir\_p
 - [ ] only stop the service that is being backed up or restored
+  - slightly trick due to shell env being set from all services that has been started, refactor that first
 - [ ] "docker\_services ps"
 - [ ] Add CI
 
