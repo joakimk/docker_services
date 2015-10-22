@@ -163,9 +163,9 @@ Ideas for after 1.0:
 - [ ] add backup/restore all services option (easier integration with our internal tools)
   - `docker_services backup all /tmp/data.tar.gz`
   - `docker_services restore all /tmp/data.tar.gz`
+- [ ] Restore the same port a service had before restart if it's still available (removes the need to restart webservers and such)
 - [ ] only stop the service that is being backed up or restored
   - slightly trick due to shell env being set from all services that has been started, refactor that first
-- [ ] Restore the same port a service had before restart if it's still available (removes the need to restart webservers and such)
 - [ ] "docker\_services ps"
 
 ## License
