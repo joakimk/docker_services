@@ -105,7 +105,7 @@ It's the config format we've been using internally for various development confi
 
 This is an [Elixir](http://elixir-lang.org/) project. It being developed with Erlang 18+ and Elixir 1.1+.
 
-If you're on OSX, just run "brew install erlang && brew install elixir" to install them.
+If you're on OSX, just run `brew install erlang && brew install elixir` to install them.
 
     mix deps.get
     mix test
