@@ -1,5 +1,7 @@
 ![](https://dl.dropboxusercontent.com/u/136929/docker_services_intro.gif)
 
+* [CircleCi](https://circleci.com/gh/joakimk/docker_services)
+
 ## What is this?
 
 A tool to install and run multiple versions of services like redis or postgres on the same computer without having port collisions by using docker.
@@ -140,6 +142,7 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] "docker\_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
 - [x] remove any existing file before restoring
 - [x] check if ensure works on a new machine, may have to add a mkdir\_p
+- [x] Add CI
 - [x] Use in internal projects
   - [x] Add to chef recipes and make sure it works
   - [x] Try using it in a project
@@ -154,7 +157,6 @@ Ideas for after 1.0:
 - [ ] only stop the service that is being backed up or restored
   - slightly trick due to shell env being set from all services that has been started, refactor that first
 - [ ] "docker\_services ps"
-- [ ] Add CI
 
 ## License
 
