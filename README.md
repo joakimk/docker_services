@@ -150,7 +150,7 @@ Ideas for after 1.0:
 - [x] "docker\_services backup postgres /tmp/postgres.tar.gz" to create a .tar.gz file of the service data
 - [x] "docker\_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
 - [x] remove any existing file before restoring
-- [ ] check if ensure works on a new machine, may have to add a mkdir\_p
+- [x] check if ensure works on a new machine, may have to add a mkdir\_p
 - [ ] only stop the service that is being backed up or restored
 - [ ] "docker\_services ps"
 - [ ] Add CI

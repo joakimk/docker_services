@@ -28,6 +28,7 @@ defmodule DockerServices.Shell do
     # sudo is needed to restore files with the right permissions and owners but
     # is unpractical to run in tests as a password prompt could lock up the test suite
     if @env == :test, do: command = String.replace(command, "sudo", "")
+    command = "bash -c '#{command}'"
 
     port = Port.open({:spawn, command}, [:stderr_to_stdout, :exit_status])
 

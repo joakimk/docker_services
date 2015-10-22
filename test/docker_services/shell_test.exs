@@ -37,4 +37,11 @@ defmodule DockerServices.ShellTest do
 
     assert output =~ "README.md"
   end
+
+  test "can run multiple commands" do
+    output = Shell.run!("echo 'hello'; ls")
+
+    assert output =~ "hello"
+    assert output =~ "README.md"
+  end
 end

@@ -156,6 +156,18 @@ defmodule DockerServicesTest do
     File.cd("#{root_path}/tmp")
     { :ok, tar_output, 0 } = DockerServices.Shell.run("tar xvfz backup.tar.gz")
     assert tar_output =~ "x redis/file_from_backup"
+
+    # Remove files on disk and restore (e.g. test fresh install from backup)
+    { :ok, _ } = File.rm_rf(DockerServices.Paths.project_data_root)
+
+    File.cd("#{root_path}/tmp/test_project")
+
+    capture_io fn ->
+      DockerServices.CLI.main([ "stop" ])
+      DockerServices.CLI.main([ "restore", "redis", "#{root_path}/tmp/backup.tar.gz" ])
+    end
+
+    assert File.exists?(file_from_backup_path)
   end
 
   test "'help' shows help text" do
