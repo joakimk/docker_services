@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - script/ci/tests.sh
+    - script/ci/run_tests_and_build_release.sh
