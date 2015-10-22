@@ -3,7 +3,7 @@ defmodule DockerServices.Mixfile do
 
   def project do
     [app: :docker_services,
-     version: "0.9.1",
+     version: "0.9.2",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
