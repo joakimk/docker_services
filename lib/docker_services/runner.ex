@@ -1,4 +1,10 @@
 defmodule DockerServices.Runner do
+  def with_services_stopped(callback) do
+    stop
+    callback.()
+    start
+  end
+
   def start do
     for_each_service &start/2
   end
