@@ -23,6 +23,8 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
             sudo mv /tmp/docker_services /usr/local/bin && \
             docker_services bootstrap
 
+The edge version is also always available under "Artifacts" on the latest [CircleCi](https://circleci.com/gh/joakimk/docker_services/tree/master) build.
+
 ## Hooking into "cd"
 
 This tool relies on being able to change environment variables when you change directories, so it needs to hook into `cd`. However, it's fairly common for tools to redefine `cd`, and it can only be overriden once.
@@ -88,6 +90,8 @@ Environment variables are automatically set and cleared using a "cd" hook:
 ### Custom environment variables
 
 You can add custom environment variables (like $PGPORT) in [DockerServices.CustomEnvironment](/lib/docker_services/custom_environment.ex). This requires [rebuilding docker\_services from source](#development). Pull requests with custom envs are welcome. If you feel the env you add isn't useful to anyone else, then let's discuss other options (config files, etc).
+
+**Getting a custom binary by just editing on github:** You can fork docker_services and then follow your fork on circleci (https://circleci.com/gh/YOUR_USER/docker_services), the binary including your changes will be available as an artifact when the build completes (haven't tested this, but it should work).
 
 Heroku compatibility:
 
