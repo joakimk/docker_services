@@ -136,6 +136,10 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 - [x] Make it work with new images that hasn't been pulled down yet
   - [x] Display result from pulling new images right away, and tell the user it's happening
   - [x] Make sure it works the first time the command is run
+- [x] "docker\_services backup postgres /tmp/postgres.tar.gz" to create a .tar.gz file of the service data
+- [x] "docker\_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
+- [x] remove any existing file before restoring
+- [x] check if ensure works on a new machine, may have to add a mkdir\_p
 - [x] Use in internal projects
   - [x] Add to chef recipes and make sure it works
   - [x] Try using it in a project
@@ -147,10 +151,6 @@ If you're on OSX, just run "brew install erlang && brew install elixir" to insta
 
 Ideas for after 1.0:
 
-- [x] "docker\_services backup postgres /tmp/postgres.tar.gz" to create a .tar.gz file of the service data
-- [x] "docker\_services restore postgres /tmp/postgres.tar.gz" restore service data from a .tar.gz file
-- [x] remove any existing file before restoring
-- [x] check if ensure works on a new machine, may have to add a mkdir\_p
 - [ ] only stop the service that is being backed up or restored
   - slightly trick due to shell env being set from all services that has been started, refactor that first
 - [ ] "docker\_services ps"
