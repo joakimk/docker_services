@@ -181,10 +181,12 @@ defmodule DockerServicesTest do
   test "unknown commands shows that they are unknown and also shows the help text" do
     output = capture_io fn ->
       DockerServices.CLI.main([ "unknown1" ])
+      DockerServices.CLI.main([ "unknown2", "args" ])
     end
 
     assert output =~ "Unknown command"
     assert output =~ "unknown1"
+    assert output =~ "unknown2"
     assert output =~ "Usage:"
   end
 
