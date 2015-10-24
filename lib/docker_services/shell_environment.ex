@@ -26,7 +26,7 @@ defmodule DockerServices.ShellEnvironment do
 
   defp build_load_lines(envs) do
     # TODO: implement this in a cleaner way
-    if envs |> Enum.any?(fn {name, value} -> value == :reset end) do
+    if envs |> Enum.any?(fn {_name, value} -> value == :reset end) do
       nil
     else
       envs
