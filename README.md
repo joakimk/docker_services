@@ -76,14 +76,13 @@ Example:
 
 ### Backup and restore
 
-You can have docker_services backup or restore the files a service persists on disk. This makes bootstrapping large databases much faster.
+You can have docker_services backup or restore the files a service persists on disk. This makes bootstrapping large databases much faster. Besides being faster, it's also simpler since the same command works on any kind of database.
 
+    docker_service backup redis /tmp/redis.tar.gz
     docker_service backup postgres /tmp/postgres.tar.gz
     docker_service restore postgres /tmp/postgres.tar.gz
 
-Using this feature one developer could backup a postgres database and transfer postgres.tar.gz to another developer who can restore from that in a fraction of the time it would take to restore from a .sql file.
-
-You could also have your CI server create a tar.gz file every time a new database dump is available. Then getting the latest copy would be something like: `scp ci:/var/docker_services/postgres.tar.gz /tmp && docker_service restore postgres /tmp/postgres.tar.gz && rm /tmp/postgres.tar.gz`.
+You could have your CI server create a tar.gz file every time a new database dump is available. Then getting the latest copy would be something like: `scp ci:/var/docker_services/postgres.tar.gz /tmp && docker_service restore postgres /tmp/postgres.tar.gz && rm /tmp/postgres.tar.gz`.
 
 At [dev.auctionet.com](http://dev.auctionet.com) we use this tool and others like it to restore any previously cached database or dependency for a given project, which makes our set up time very short for new developers or reinstalls.
 
