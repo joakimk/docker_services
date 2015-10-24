@@ -1,12 +1,12 @@
 defmodule DockerServices.FakeDocker do
   def start(name, docker_image) do
-    agent |> Agent.update fn (state) -> %{ command: :start, name: name, docker_image: docker_image } end
+    agent |> Agent.update fn (_state) -> %{ command: :start, name: name, docker_image: docker_image } end
 
     {:ok, fake_port_number(name)}
   end
 
   def stop(name) do
-    agent |> Agent.update fn (state) -> %{ command: :stop, name: name } end
+    agent |> Agent.update fn (_state) -> %{ command: :stop, name: name } end
 
     :ok
   end

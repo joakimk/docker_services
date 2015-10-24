@@ -14,11 +14,11 @@ defmodule DockerServices.Shell do
     result = run(command, silent: silent)
 
     case result do
-      {:ok, output, exit_status} ->
+      {:ok, output, _exit_status} ->
         output
       {:error, output, exit_status} ->
         raise "Command '#{command}' failed with exit status #{exit_status}.\n\nCommand output:\n\n#{output}"
-      other ->
+      _other ->
         raise "Unexpected result: #{result.inspect}"
     end
   end
@@ -26,12 +26,7 @@ defmodule DockerServices.Shell do
   @env Mix.env
   def run(command), do: run(command, silent: true)
   def run(command, silent: silent) do
-    # sudo is needed to restore files with the right permissions and owners but
-    # is unpractical to run in tests as a password prompt could lock up the test suite
-    if @env == :test, do: command = String.replace(command, "sudo", "")
-    command = "bash -c '#{command}'"
-
-    port = Port.open({:spawn, command}, [:stderr_to_stdout, :exit_status])
+    port = Port.open({:spawn, wrap_command(command, @env)}, [:stderr_to_stdout, :exit_status])
 
     {output, exit_status} = wait_for_command_to_finish(port, silent)
 
@@ -41,6 +36,13 @@ defmodule DockerServices.Shell do
       {:ok, output, exit_status}
     end
   end
+
+  # sudo is needed to restore files with the right permissions and owners but
+  # is unpractical to run in tests as a password prompt could lock up the test suite
+  defp wrap_command(command, :test), do: wrap_in_bash(String.replace(command, "sudo", ""))
+  defp wrap_command(command, _other), do: wrap_in_bash(command)
+
+  defp wrap_in_bash(command), do: "bash -c '#{command}'"
 
   defp wait_for_command_to_finish(port, silent), do: wait_for_command_to_finish(port, silent, "", nil)
   defp wait_for_command_to_finish(port, silent, output, nil) do
@@ -57,5 +59,5 @@ defmodule DockerServices.Shell do
     wait_for_command_to_finish(port, silent, output, exit_status)
   end
 
-  defp wait_for_command_to_finish(port, silent, output, exit_status), do: {output, exit_status}
+  defp wait_for_command_to_finish(_port, _silent, output, exit_status), do: {output, exit_status}
 end
