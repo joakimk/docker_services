@@ -74,6 +74,17 @@ Example:
 
 ![](https://dl.dropboxusercontent.com/u/136929/docker_services_usage.png)
 
+### Backup and restore
+
+You can have docker_services backup or restore the files a service persists on disk. This makes bootstrapping large databases much faster.
+
+    docker_service backup postgres /tmp/postgres.tar.gz
+    docker_service restore postgres /tmp/postgres.tar.gz
+
+Using this feature one developer could backup a postgres database and transfer postgres.tar.gz to another developer who can restore from that in a fraction of the time it would take to restore from a .sql file. You could even have your CI server create a tar.gz file every time a new database dump is available.
+
+At [dev.auctionet.com](https://dev.auctionet.com) we use this tool and others like it to restore any previously cached database or dependency for a given project, which makes our set up time very short for new developers or reinstalls.
+
 ### How environment variables are handled
 
 Environment variables are automatically set and cleared using a "cd" hook:
@@ -156,6 +167,7 @@ If you're on OSX, just run `brew install erlang && brew install elixir` to insta
 - [ ] Ensure it works in zsh
   - [x] Try to reproduce the error myself (could not reproduce)
   - [ ] Wait for feedback from a zsh user at work
+- [ ] Set ownership of backups to $USER
 - [ ] Release 1.0? :)
 
 Ideas for after 1.0:
