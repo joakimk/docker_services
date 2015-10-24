@@ -23,7 +23,7 @@ I've tried to release this as part of a [bigger project](https://github.com/joak
             sudo mv /tmp/docker_services /usr/local/bin && \
             docker_services bootstrap
 
-The edge version is also always available under "Artifacts" on the latest [CircleCi](https://circleci.com/gh/joakimk/docker_services/tree/master) build.
+The edge version is also always available under "Artifacts" on the latest [CircleCi](https://circleci.com/gh/joakimk/docker_services/tree/master) build (though it seems you need to be logged into CircleCi to see it).
 
 ## Hooking into "cd"
 
