@@ -82,7 +82,7 @@ You can have docker_services backup or restore the files a service persists on d
     docker_service backup postgres /tmp/postgres.tar.gz
     docker_service restore postgres /tmp/postgres.tar.gz
 
-You could have your CI server create a tar.gz file every time a new database dump is available. Then getting the latest copy would be something like: `scp ci:/var/docker_services/postgres.tar.gz /tmp && docker_service restore postgres /tmp/postgres.tar.gz && rm /tmp/postgres.tar.gz`.
+For example, you could have your CI server create a tar.gz file every time a new database dump is available. Then getting the latest copy would be something like: `scp ci:/var/docker_services/postgres.tar.gz /tmp && docker_service restore postgres /tmp/postgres.tar.gz && rm /tmp/postgres.tar.gz`.
 
 At [dev.auctionet.com](http://dev.auctionet.com) we use this tool and others like it to restore any previously cached database or dependency for a given project, which makes our set up time very short for new developers or reinstalls.
 
