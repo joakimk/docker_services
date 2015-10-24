@@ -2,7 +2,7 @@ defmodule DockerServices.Backup do
   def backup(service, archive_path) do
     with_services_stopped fn ->
       with_progressbar "backing up #{service} to #{archive_path}", "#{service} backed up to #{archive_path}", fn ->
-        DockerServices.Shell.run!("cd #{data_root_path} && tar cfzp #{archive_path} #{service}")
+        DockerServices.Shell.run!("cd #{data_root_path} && sudo tar cfzp #{archive_path} #{service}")
       end
     end
   end
