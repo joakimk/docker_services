@@ -83,7 +83,7 @@ You can have docker_services backup or restore the files a service persists on d
 
 Using this feature one developer could backup a postgres database and transfer postgres.tar.gz to another developer who can restore from that in a fraction of the time it would take to restore from a .sql file. You could even have your CI server create a tar.gz file every time a new database dump is available.
 
-At [dev.auctionet.com](https://dev.auctionet.com) we use this tool and others like it to restore any previously cached database or dependency for a given project, which makes our set up time very short for new developers or reinstalls.
+At [dev.auctionet.com](http://dev.auctionet.com) we use this tool and others like it to restore any previously cached database or dependency for a given project, which makes our set up time very short for new developers or reinstalls.
 
 ### How environment variables are handled
 
