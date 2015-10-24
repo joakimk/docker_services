@@ -9,7 +9,7 @@ defmodule DockerServices.Backup do
 
   def restore(service, archive_path) do
     with_services_stopped fn ->
-      with_progressbar "restore #{service} from #{archive_path}", "#{service} restored", fn ->
+      with_progressbar "restoring #{service} from #{archive_path}", "#{service} restored", fn ->
         DockerServices.Shell.run!("sudo rm -rf #{data_root_path}/#{service}; sudo mkdir -p #{data_root_path}")
         DockerServices.Shell.run!("cd #{data_root_path} && sudo tar xfz #{archive_path}")
       end
