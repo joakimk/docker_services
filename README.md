@@ -179,6 +179,7 @@ Ideas for after 1.0:
 - [ ] Restore the same port a service had before restart if it's still available (removes the need to restart webservers and such)
 - [ ] only stop the service that is being backed up or restored
   - slightly trick due to shell env being set from all services that has been started, refactor that first
+- [ ] maybe: upload a release to github as "edge" from circleci
 - [ ] "docker\_services ps"
 
 ## License
